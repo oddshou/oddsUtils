@@ -73,4 +73,8 @@ public class MainActivity extends AppCompatActivity {
     public void toThreadActivity(View view) {
         startActivity(new Intent(this, ThreadActivity.class));
     }
+
+    public void toDataBinding(View view) {
+        startActivity(new Intent(this, DataBindingActivity.class));
+    }
 }

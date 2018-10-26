@@ -21,7 +21,8 @@
             android:launchMode="singleTask" />
         <activity android:name=".CActivity" />
         <activity android:name=".RxActivity" />
-        <activity android:name=".ThreadActivity"></activity>
+        <activity android:name=".ThreadActivity" />
+        <activity android:name=".DataBindingActivity"></activity>
     </application>
 
 </manifest>
