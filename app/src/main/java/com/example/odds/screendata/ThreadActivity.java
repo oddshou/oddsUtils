@@ -18,10 +18,8 @@ public class ThreadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thread);
-//        cacheThreadPool();
-        fixThreadPool();
 
-        Collection<String> collection = new ArrayList<>();
+
     }
 
     private void cacheThreadPool(){
