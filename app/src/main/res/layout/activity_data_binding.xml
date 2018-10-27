@@ -5,13 +5,13 @@
     <data>
         <variable
             name="vm"
-            type="com.example.odds.screendata.Person"/>
+            type="com.example.odds.model.Person"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".DataBindingActivity">
+        tools:context=".com.example.odds.ui.DataBindingActivity">
 
         <TextView
             android:id="@+id/textViewName"

@@ -1,15 +1,13 @@
-package com.example.odds.screendata;
+package com.example.odds.route;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import com.example.odds.odds.R;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 public class ThreadActivity extends AppCompatActivity {
     private String TAG = getClass().getName();

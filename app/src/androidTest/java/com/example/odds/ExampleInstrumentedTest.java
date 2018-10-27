@@ -1,4 +1,4 @@
-package com.example.odds.screendata;
+package com.example.odds.odds;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

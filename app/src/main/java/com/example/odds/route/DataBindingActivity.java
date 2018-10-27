@@ -1,4 +1,4 @@
-package com.example.odds.screendata;
+package com.example.odds.route;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
@@ -9,7 +9,10 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 
-import com.example.odds.screendata.databinding.ActivityDataBindingBinding;
+import com.example.odds.model.Person;
+import com.example.odds.odds.BR;
+import com.example.odds.odds.R;
+import com.example.odds.odds.databinding.ActivityDataBindingBinding;
 
 public class DataBindingActivity extends AppCompatActivity {
     String TAG = getClass().getName();

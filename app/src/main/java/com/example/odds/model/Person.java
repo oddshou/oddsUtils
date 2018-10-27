@@ -1,10 +1,10 @@
-package com.example.odds.screendata;
+package com.example.odds.model;
 
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-import com.example.odds.screendata.BR;
+import com.example.odds.odds.BR;
 
 public class Person extends BaseObservable {
 

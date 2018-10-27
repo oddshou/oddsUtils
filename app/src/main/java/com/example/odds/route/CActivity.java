@@ -1,11 +1,12 @@
-package com.example.odds.screendata;
+package com.example.odds.route;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+
+import com.example.odds.odds.R;
 
 public class CActivity extends AppCompatActivity {
 
