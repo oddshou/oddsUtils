@@ -8,10 +8,10 @@
             type="com.example.odds.model.Person"/>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".com.example.odds.ui.DataBindingActivity">
+        tools:context=".route.DataBindingActivity">
 
         <TextView
             android:id="@+id/textViewName"
@@ -45,6 +45,6 @@
             android:onClick="reNamePerson"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewName" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

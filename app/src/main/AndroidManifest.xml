@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.odds.odds">
+    package="com.example.odds">
 
     <application
         android:allowBackup="true"
@@ -9,20 +9,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.odds.com.example.odds.com.example.odds.ui.MainActivity">
+        <activity android:name=".route.MainRouteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="http"
+                    android:host="www.odds-hou.com"
+                    android:pathPrefix="/active" />
+            </intent-filter>
         </activity>
         <activity
-            android:name="com.example.odds.com.example.odds.com.example.odds.ui.BActivity"
+            android:name=".route.BActivity"
             android:launchMode="singleTask" />
-        <activity android:name="com.example.odds.com.example.odds.com.example.odds.ui.CActivity" />
-        <activity android:name="com.example.odds.com.example.odds.com.example.odds.ui.RxActivity" />
-        <activity android:name="com.example.odds.com.example.odds.com.example.odds.ui.ThreadActivity" />
-        <activity android:name="com.example.odds.com.example.odds.com.example.odds.ui.DataBindingActivity"></activity>
+        <activity android:name=".route.CActivity" />
+        <activity android:name=".route.RxActivity" />
+        <activity android:name=".route.ThreadActivity" />
+        <activity android:name=".route.DataBindingActivity" />
+        <activity android:name=".jetpack.VMActivity"></activity>
     </application>
 
 </manifest>

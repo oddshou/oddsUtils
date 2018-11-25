@@ -1,15 +1,15 @@
 package com.example.odds.route;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.example.odds.odds.R;
+import com.example.odds.R;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
+import androidx.appcompat.app.AppCompatActivity;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;

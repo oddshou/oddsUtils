@@ -1,4 +1,4 @@
-package com.example.odds.odds;
+package com.example.odds;
 
 import org.junit.Test;
 
