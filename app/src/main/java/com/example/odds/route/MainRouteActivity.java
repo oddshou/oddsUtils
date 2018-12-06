@@ -13,8 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.odds.R;
+import com.example.odds.annotations.Route;
 
+@Route
 public class MainRouteActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +27,9 @@ public class MainRouteActivity extends AppCompatActivity {
         // ATTENTION: This was auto-generated to handle app links.
         Intent appLinkIntent = getIntent();
         String appLinkAction = appLinkIntent.getAction();
+
         Uri appLinkData = appLinkIntent.getData();
+
     }
 
     public void getPingMuSize(Context mContext) {
