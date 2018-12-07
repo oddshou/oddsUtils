@@ -13,11 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.odds.R;
+import com.example.odds.annotations.InitFile;
 import com.example.odds.annotations.Route;
 
 @Route
 public class MainRouteActivity extends AppCompatActivity {
 
+    @InitFile
+    public String job;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,8 @@ public class MainRouteActivity extends AppCompatActivity {
         String appLinkAction = appLinkIntent.getAction();
 
         Uri appLinkData = appLinkIntent.getData();
+
+
 
     }
 

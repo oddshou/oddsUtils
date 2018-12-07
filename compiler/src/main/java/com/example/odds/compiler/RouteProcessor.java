@@ -8,25 +8,24 @@ import com.squareup.javapoet.CodeBlock;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterSpec;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
-import javax.tools.Diagnostic;
 
 /**
  *    public static Intent prepareIntent(Context context, String url）
@@ -34,14 +33,13 @@ import javax.tools.Diagnostic;
 @AutoService(Processor.class)
 public class RouteProcessor extends AbstractProcessor {
 
-    private Messager mMessager;
-    private List<MethodSpec> methodSpecList;
+    //Element 所在元素，ProcessObject 处理对象
+    private Map<Element, ProcessObject> processObjectList;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
-        mMessager = processingEnv.getMessager();
-        methodSpecList = new ArrayList<>();
+        processObjectList = new HashMap<>();
     }
 
     @Override
@@ -60,65 +58,109 @@ public class RouteProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 
-
         //获取指定类型注解集合
         Set<? extends Element> initFileAnnotations = roundEnv.getElementsAnnotatedWith(InitFile.class);
         //需要根据所在类型单独生成一个方法，并把他们作为该方法参数
         for (Element element: initFileAnnotations) {
-            //如果标注的对象不是FIELD则报错,这个错误其实不会发生因为InitFile的Target只声明为ElementType.FIELD了
-            if (element.getKind()!= ElementKind.FIELD) {
-                mMessager.printMessage(Diagnostic.Kind.ERROR, "is not a FIELD", element);
-            }
-            //返回元素的超类，接口类型，如果有将显示在列表的最后
-            processingEnv.getTypeUtils().directSupertypes(element.asType());
-            //返回此元素直接包含的元素
-//            List<? extends Element> list = element.getEnclosedElements();
-            //返回元素最内层的元素
-            element.getEnclosingElement();
-
             //得到所在类名
             Element clazz = element.getEnclosingElement();
-            //获取类全名
-            String elemClass = element.asType().toString();
-//            createStaticMethod(element.getSimpleName(), );
-            mMessager.printMessage(Diagnostic.Kind.NOTE, element.toString());
-
+            if (processObjectList.containsKey(clazz)) {
+                processObjectList.get(clazz).addFile(element);
+            }else{
+                processObjectList.put(clazz, new ProcessObject(element));
+            }
         }
-
-        createMain();
-        return false;
+        createJava();
+        return true;
     }
 
-    private void createStaticMethod(String simpleName, List<ParameterSpec> parmList) {
+    private MethodSpec createPreIntent(Element currentElement, List<ParameterSpec> parmList) {
         //statementList
         CodeBlock.Builder parm = CodeBlock.builder();
         for (ParameterSpec item :
                 parmList) {
-            parm.add("intent.putExtra($L, $L)", item.name, item.name);
+            parm.add("intent.putExtra($S, $L);\n", item.name, item.name);
         }
 
-        ClassName context = ClassName.get("android.content.Context", "context");
-        MethodSpec methodSpec = MethodSpec.methodBuilder("preIntent_" + simpleName)
+        ClassName contextClass = ClassName.get("android.content", "Context");
+        ClassName intentClass = ClassName.get("android.content", "Intent");
+        MethodSpec methodSpec = MethodSpec.methodBuilder("preIntent_" + currentElement.getSimpleName())
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                .returns(ClassName.get("android.content", "Intent"))
-                .addParameter(context.getClass(), "context")    //额外添加context参数作为第一个必传参数
+                .returns(intentClass)
+                .addParameter(contextClass, "context")    //额外添加context参数作为第一个必传参数
                 .addParameters(parmList)
-                .addStatement("android.content.Intent intent = new Intent(context, $s.class)", simpleName)
-                .addStatement(parm.toString())
+                .addStatement("$T intent = new Intent(context, $T.class)", intentClass, TypeName.get(currentElement.asType()))
+                .addStatement(parm.build())
+                .addStatement("return intent")//addStatement 末尾会加上分号和换行
                 .build();
-
-        methodSpecList.add(methodSpec);
-
+        return methodSpec;
     }
 
-    private void createMain() {
-        TypeSpec.Builder builder = TypeSpec.classBuilder("HelloWorld")
+    private MethodSpec createOnSave(Element currentElement, List<ParameterSpec> parmList) {
+        //statementList
+        CodeBlock.Builder parm = CodeBlock.builder();
+        for (ParameterSpec item :
+                parmList) {
+            // TODO: 2018/12/7  putString 方法需要适配
+            parm.add("outState.$L($S, activity.$L);\n", "putString", item.name, item.name);
+        }
+
+        ClassName outState = ClassName.get("android.os", "Bundle");
+        ClassName intentClass = ClassName.get("android.content", "Intent");
+        MethodSpec methodSpec = MethodSpec.methodBuilder("preIntentOnSave_" + currentElement.getSimpleName())
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .returns(void.class)
+                .addParameter(outState, "outState")    //Bundle outState
+                .addParameter(TypeName.get(currentElement.asType()), "activity") //xxActivity activity
+                .addStatement(parm.build())
+                .build();
+        return methodSpec;
+    }
+
+
+
+    private MethodSpec createOnCreateSave(Element currentElement, List<ParameterSpec> parmList) {
+        //statementList
+        CodeBlock.Builder parm = CodeBlock.builder();
+        for (ParameterSpec item :
+                parmList) {
+            parm.add("intent.putExtra($S, $L);\n", item.name, item.name);
+        }
+
+        ClassName contextClass = ClassName.get("android.content", "Context");
+        ClassName intentClass = ClassName.get("android.content", "Intent");
+        MethodSpec methodSpec = MethodSpec.methodBuilder("preIntent_" + currentElement.getSimpleName())
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .returns(intentClass)
+                .addParameter(contextClass, "context")    //额外添加context参数作为第一个必传参数
+                .addParameters(parmList)
+                .addStatement("$T intent = new Intent(context, $T.class)", intentClass, TypeName.get(currentElement.asType()))
+                .addStatement(parm.build())
+                .addStatement("return intent")//addStatement 末尾会加上分号和换行
+                .build();
+        return methodSpec;
+    }
+
+    private void createJava() {
+        if (processObjectList.size() <= 0) {
+            return;
+        }
+
+        TypeSpec.Builder builder = TypeSpec.classBuilder("PreIntent")
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL);
 
-        for (MethodSpec item :
-                methodSpecList) {
-            builder.addMethod(item);
+        //生成preIntent 方法
+        for (Map.Entry<Element, ProcessObject> entry:
+             processObjectList.entrySet()) {
+            builder.addMethod(createPreIntent(entry.getKey(), entry.getValue().parameterSpecList));
+            //每生成一个方法，还需要生成一个对应 onSaveInstance 方法，和一个 oncreate 方法
+            builder.addMethod(createOnSave(entry.getKey(), entry.getValue().parameterSpecList));
         }
+        //生成 onSave 方法
+
+
+        //生成 OnCreateSave 方法
+
 
 
         JavaFile javaFile = JavaFile.builder("com.example.helloworld", builder.build())
@@ -130,5 +172,13 @@ public class RouteProcessor extends AbstractProcessor {
         }
     }
 
-
+    /**
+     *
+     * @param element 参数类型， String, Bundle……
+     * @return 返回方法名
+     */
+    private String getSaveMethod(Element element) {
+        // TODO: 2018/12/7  
+        return "";
+    }
 }
