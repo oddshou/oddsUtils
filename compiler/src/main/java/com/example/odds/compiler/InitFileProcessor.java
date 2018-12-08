@@ -1,7 +1,6 @@
 package com.example.odds.compiler;
 
 import com.example.odds.annotations.InitFile;
-import com.example.odds.annotations.Route;
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.CodeBlock;
@@ -28,10 +27,10 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 
 /**
- *    public static Intent prepareIntent(Context context, String url）
+ * public static Intent prepareIntent(Context context, String url）
  */
 @AutoService(Processor.class)
-public class RouteProcessor extends AbstractProcessor {
+public class InitFileProcessor extends AbstractProcessor {
 
     //Element 所在元素，ProcessObject 处理对象
     private Map<Element, ProcessObject> processObjectList;
@@ -50,23 +49,21 @@ public class RouteProcessor extends AbstractProcessor {
     @Override
     public Set<String> getSupportedAnnotationTypes() {
         HashSet<String> set = new HashSet<>();
-        set.add(Route.class.getCanonicalName());
         set.add(InitFile.class.getCanonicalName());
         return set;
     }
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-
         //获取指定类型注解集合
         Set<? extends Element> initFileAnnotations = roundEnv.getElementsAnnotatedWith(InitFile.class);
         //需要根据所在类型单独生成一个方法，并把他们作为该方法参数
-        for (Element element: initFileAnnotations) {
+        for (Element element : initFileAnnotations) {
             //得到所在类名
             Element clazz = element.getEnclosingElement();
             if (processObjectList.containsKey(clazz)) {
                 processObjectList.get(clazz).addFile(element);
-            }else{
+            } else {
                 processObjectList.put(clazz, new ProcessObject(element));
             }
         }
@@ -99,12 +96,9 @@ public class RouteProcessor extends AbstractProcessor {
     private MethodSpec createOnSave(Element currentElement, List<ParameterSpec> parmList) {
         //statementList
         CodeBlock.Builder parm = CodeBlock.builder();
-        for (ParameterSpec item :
-                parmList) {
-            // TODO: 2018/12/7  putString 方法需要适配
-            parm.add("outState.$L($S, activity.$L);\n", "putString", item.name, item.name);
+        for (ParameterSpec item : parmList) {
+            parm.add("intent.putExtra($S, activity.$L);\n", item.name, item.name);
         }
-
         ClassName outState = ClassName.get("android.os", "Bundle");
         ClassName intentClass = ClassName.get("android.content", "Intent");
         MethodSpec methodSpec = MethodSpec.methodBuilder("preIntentOnSave_" + currentElement.getSimpleName())
@@ -112,11 +106,12 @@ public class RouteProcessor extends AbstractProcessor {
                 .returns(void.class)
                 .addParameter(outState, "outState")    //Bundle outState
                 .addParameter(TypeName.get(currentElement.asType()), "activity") //xxActivity activity
+                .addStatement("Intent intent = new Intent();")
                 .addStatement(parm.build())
+                .addStatement("outState.putAll(intent.getExtras());")
                 .build();
         return methodSpec;
     }
-
 
 
     private MethodSpec createOnCreateSave(Element currentElement, List<ParameterSpec> parmList) {
@@ -124,19 +119,22 @@ public class RouteProcessor extends AbstractProcessor {
         CodeBlock.Builder parm = CodeBlock.builder();
         for (ParameterSpec item :
                 parmList) {
-            parm.add("intent.putExtra($S, $L);\n", item.name, item.name);
+            parm.add("Object value_$L = bundle.get($S);\n", item.name, item.name);
+            parm.add("if (value_$L != null) {\n" +
+                            "activityJava.$L = ($T) value_$L;\n" +
+                            "}\n",
+                    item.name, item.name, item.type, item.name);
         }
 
         ClassName contextClass = ClassName.get("android.content", "Context");
         ClassName intentClass = ClassName.get("android.content", "Intent");
-        MethodSpec methodSpec = MethodSpec.methodBuilder("preIntent_" + currentElement.getSimpleName())
+        ClassName bundle = ClassName.get("android.os", "Bundle");
+        MethodSpec methodSpec = MethodSpec.methodBuilder("preIntentOnCreate_" + currentElement.getSimpleName())
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                .returns(intentClass)
-                .addParameter(contextClass, "context")    //额外添加context参数作为第一个必传参数
-                .addParameters(parmList)
-                .addStatement("$T intent = new Intent(context, $T.class)", intentClass, TypeName.get(currentElement.asType()))
+                .addParameter(bundle, "saveInstance")
+                .addParameter(TypeName.get(currentElement.asType()), "activityJava") //xxActivity activity
+                .addStatement("Bundle bundle = saveInstance != null ? saveInstance : activityJava.getIntent().getExtras();")
                 .addStatement(parm.build())
-                .addStatement("return intent")//addStatement 末尾会加上分号和换行
                 .build();
         return methodSpec;
     }
@@ -150,35 +148,20 @@ public class RouteProcessor extends AbstractProcessor {
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL);
 
         //生成preIntent 方法
-        for (Map.Entry<Element, ProcessObject> entry:
-             processObjectList.entrySet()) {
+        for (Map.Entry<Element, ProcessObject> entry :
+                processObjectList.entrySet()) {
             builder.addMethod(createPreIntent(entry.getKey(), entry.getValue().parameterSpecList));
             //每生成一个方法，还需要生成一个对应 onSaveInstance 方法，和一个 oncreate 方法
             builder.addMethod(createOnSave(entry.getKey(), entry.getValue().parameterSpecList));
+            builder.addMethod(createOnCreateSave(entry.getKey(), entry.getValue().parameterSpecList));
         }
-        //生成 onSave 方法
 
-
-        //生成 OnCreateSave 方法
-
-
-
-        JavaFile javaFile = JavaFile.builder("com.example.helloworld", builder.build())
+        JavaFile javaFile = JavaFile.builder("com.odds.annotation.processor", builder.build())
                 .build();
         try {
             javaFile.writeTo(processingEnv.getFiler());
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     *
-     * @param element 参数类型， String, Bundle……
-     * @return 返回方法名
-     */
-    private String getSaveMethod(Element element) {
-        // TODO: 2018/12/7  
-        return "";
     }
 }

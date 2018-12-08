@@ -14,9 +14,8 @@ import android.widget.Toast;
 
 import com.example.odds.R;
 import com.example.odds.annotations.InitFile;
-import com.example.odds.annotations.Route;
+import com.odds.annotation.processor.PreIntent;
 
-@Route
 public class MainRouteActivity extends AppCompatActivity {
 
     @InitFile
@@ -30,15 +29,11 @@ public class MainRouteActivity extends AppCompatActivity {
         // ATTENTION: This was auto-generated to handle app links.
         Intent appLinkIntent = getIntent();
         String appLinkAction = appLinkIntent.getAction();
-
         Uri appLinkData = appLinkIntent.getData();
-
-
 
     }
 
     public void getPingMuSize(Context mContext) {
-
 
         int densityDpi = mContext.getResources().getDisplayMetrics().densityDpi;
         float scaledDensity = mContext.getResources().getDisplayMetrics().scaledDensity;
@@ -95,5 +90,12 @@ public class MainRouteActivity extends AppCompatActivity {
 
     public void toDataBinding(View view) {
         startActivity(new Intent(this, DataBindingActivity.class));
+    }
+
+    public void toJavaMain(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putString("bundle", "bundle-bundle");
+        Intent intent = PreIntent.preIntent_MainActivityJava(this, "哈哈哈", true, 111, bundle, null);
+        startActivity(intent);
     }
 }

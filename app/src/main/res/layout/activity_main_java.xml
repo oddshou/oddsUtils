@@ -6,4 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".java_main.MainActivityJava">
 
+    <TextView
+        android:id="@+id/args"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="args"
+        android:onClick="toText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
