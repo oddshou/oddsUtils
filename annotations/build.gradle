@@ -1,6 +1,4 @@
 apply plugin: 'java-library'
-//启用Jitpack 插件
-apply plugin: 'com.github.dcendents.android-maven'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
