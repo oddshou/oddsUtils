@@ -5,6 +5,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * source code https://github.com/oddshou/AndroidSomeTest<p/>
+ * 用法：给Activity成员添加 @InitFile 会在PreIntent下生成3个以该Activity名称为后缀的对应方法。包名：odds.annotation.processor<P/>
+ * 注意成员定义先后顺序决定preIntent方法参数顺序。参数默认值添加在成员定义处。
+ *
+ */
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.CLASS)
 public @interface InitFile {

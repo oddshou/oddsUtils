@@ -101,14 +101,14 @@ public class InitFileProcessor extends AbstractProcessor {
         }
         ClassName outState = ClassName.get("android.os", "Bundle");
         ClassName intentClass = ClassName.get("android.content", "Intent");
-        MethodSpec methodSpec = MethodSpec.methodBuilder("preIntentOnSave_" + currentElement.getSimpleName())
+        MethodSpec methodSpec = MethodSpec.methodBuilder("onSave_" + currentElement.getSimpleName())
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .returns(void.class)
                 .addParameter(outState, "outState")    //Bundle outState
                 .addParameter(TypeName.get(currentElement.asType()), "activity") //xxActivity activity
-                .addStatement("Intent intent = new Intent();")
+                .addStatement("Intent intent = new Intent()")
                 .addStatement(parm.build())
-                .addStatement("outState.putAll(intent.getExtras());")
+                .addStatement("outState.putAll(intent.getExtras())")
                 .build();
         return methodSpec;
     }
@@ -129,11 +129,11 @@ public class InitFileProcessor extends AbstractProcessor {
         ClassName contextClass = ClassName.get("android.content", "Context");
         ClassName intentClass = ClassName.get("android.content", "Intent");
         ClassName bundle = ClassName.get("android.os", "Bundle");
-        MethodSpec methodSpec = MethodSpec.methodBuilder("preIntentOnCreate_" + currentElement.getSimpleName())
+        MethodSpec methodSpec = MethodSpec.methodBuilder("onCreate_" + currentElement.getSimpleName())
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .addParameter(bundle, "saveInstance")
                 .addParameter(TypeName.get(currentElement.asType()), "activityJava") //xxActivity activity
-                .addStatement("Bundle bundle = saveInstance != null ? saveInstance : activityJava.getIntent().getExtras();")
+                .addStatement("Bundle bundle = saveInstance != null ? saveInstance : activityJava.getIntent().getExtras()")
                 .addStatement(parm.build())
                 .build();
         return methodSpec;

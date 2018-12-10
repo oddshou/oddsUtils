@@ -35,7 +35,7 @@
         <activity android:name=".route.ThreadActivity" />
         <activity android:name=".route.DataBindingActivity" />
         <activity android:name=".jetpack.VMActivity" />
-        <activity android:name=".java_main.MainActivityJava"></activity>
+        <activity android:name=".java_main.TestPreIntentActivity"/>
     </application>
 
 </manifest>

@@ -18,7 +18,6 @@ import com.odds.annotation.processor.PreIntent;
 
 public class MainRouteActivity extends AppCompatActivity {
 
-    @InitFile
     public String job;
 
     @Override

@@ -14,7 +14,7 @@ import com.example.odds.route.RxActivity;
 import com.odds.annotation.processor.PreIntent;
 
 
-public class MainActivityJava extends AppCompatActivity {
+public class TestPreIntentActivity extends AppCompatActivity {
 
     @InitFile
     public String mName;
@@ -29,7 +29,7 @@ public class MainActivityJava extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        PreIntent.preIntentOnSave_MainActivityJava(outState, this);
+        PreIntent.onSave_MainActivityJava(outState, this);
         super.onSaveInstanceState(outState);
     }
 
@@ -37,7 +37,7 @@ public class MainActivityJava extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        PreIntent.preIntentOnCreate_MainActivityJava(savedInstanceState, this);
+        PreIntent.onCreate_MainActivityJava(savedInstanceState, this);
         setContentView(R.layout.activity_main_java);
 
         TextView view = findViewById(R.id.args);
