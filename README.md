@@ -14,6 +14,9 @@ allprojects {
 
 dependencies {
         implementation 'com.github.oddshou:AndroidSomeTest:1.3'
+        // annotationProcessor 或者 kapt 二选一
+        kapt 'com.github.oddshou.AndroidSomeTest:compiler:1.2'
+        //annotationProcessor 'com.github.oddshou.AndroidSomeTest:compiler:1.2'
 }
 ```
 
