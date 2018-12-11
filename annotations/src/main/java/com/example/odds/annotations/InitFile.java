@@ -14,4 +14,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.CLASS)
 public @interface InitFile {
+    boolean Serializable() default false;
+    boolean Parcelable() default false;
 }

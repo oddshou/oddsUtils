@@ -14,7 +14,11 @@ import android.widget.Toast;
 
 import com.example.odds.R;
 import com.example.odds.annotations.InitFile;
+import com.example.odds.java_main.TestPreIntentActivity;
 import com.odds.annotation.processor.PreIntent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainRouteActivity extends AppCompatActivity {
 
@@ -94,7 +98,20 @@ public class MainRouteActivity extends AppCompatActivity {
     public void toJavaMain(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("bundle", "bundle-bundle");
-        Intent intent = PreIntent.preIntent_MainActivityJava(this, "哈哈哈", true, 111, bundle, null);
+        List<String> list = new ArrayList<>();
+        list.add("11");
+        list.add("22");
+        list.add("33");
+
+        TestPreIntentActivity.SerializeClass serialize66 = new TestPreIntentActivity.SerializeClass("Serialize66");
+        TestPreIntentActivity.ParcelableClass parcelable55 = new TestPreIntentActivity.ParcelableClass("Parcelable55");
+        ArrayList<TestPreIntentActivity.ParcelableClass> list1 = new ArrayList<>();
+        list1.add(parcelable55);
+        List<TestPreIntentActivity.SerializeClass> list2 = new ArrayList<>();
+        list2.add(serialize66);
+        Intent intent = PreIntent.preIntent_TestPreIntentActivity(this, "哈哈哈", true, 111, bundle,
+                list, parcelable55, serialize66, new TestPreIntentActivity.ParcelableClass[]{parcelable55}, new TestPreIntentActivity.SerializeClass[]{serialize66},
+                list1, list2);
         startActivity(intent);
     }
 }
