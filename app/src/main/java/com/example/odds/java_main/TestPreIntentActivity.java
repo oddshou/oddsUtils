@@ -23,16 +23,16 @@ import java.util.Locale;
 
 
 public class TestPreIntentActivity extends AppCompatActivity {
-
-    @InitFile
+    //尽量用order 来规定参数顺序，避免因调整成员定义顺序导致调用异常
+    @InitFile(order = 0)
     public String mName;
-    @InitFile
+    @InitFile(order = 1)
     public boolean isGood;
-    @InitFile
+    @InitFile(order = 2)
     public int num;
-    @InitFile
+    @InitFile(order = 3)
     public Bundle bundle = new Bundle();
-    @InitFile(Serializable = true)
+    @InitFile(Serializable = true, order = 4)
     public List<String> ages;
     @InitFile
     public ParcelableClass parcelableClass;

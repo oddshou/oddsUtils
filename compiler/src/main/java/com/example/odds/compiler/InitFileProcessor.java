@@ -61,15 +61,16 @@ public class InitFileProcessor extends AbstractProcessor {
         for (Element element : initFileAnnotations) {
             boolean parcelable = element.getAnnotation(InitFile.class).Parcelable();
             boolean serializable = element.getAnnotation(InitFile.class).Serializable();
+            int order = element.getAnnotation(InitFile.class).order();
             //得到所在类名
             Element clazz = element.getEnclosingElement();
 
             //返回元素的超类，包括接口，也会显示在返回列表的最后
 //            processingEnv.getTypeUtils().directSupertypes(element.asType());
             if (processObjectList.containsKey(clazz)) {
-                processObjectList.get(clazz).addFile(element, serializable, parcelable);
+                processObjectList.get(clazz).addFile(element, serializable, parcelable, order);
             } else {
-                processObjectList.put(clazz, new ProcessObject(element, serializable, parcelable));
+                processObjectList.put(clazz, new ProcessObject(element, serializable, parcelable, order));
             }
         }
         createJava();
