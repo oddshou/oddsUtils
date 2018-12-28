@@ -24,6 +24,7 @@ import java.util.Locale;
 
 public class TestPreIntentActivity extends AppCompatActivity {
     //尽量用order 来规定参数顺序，避免因调整成员定义顺序导致调用异常
+    //order 非必填
     @InitFile(order = 0)
     public String mName;
     @InitFile(order = 1)
