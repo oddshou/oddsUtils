@@ -9,6 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".route.CustomViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".route.MainRouteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +42,7 @@
         <activity android:name=".route.ThreadActivity" />
         <activity android:name=".route.DataBindingActivity" />
         <activity android:name=".jetpack.VMActivity" />
-        <activity android:name=".java_main.TestPreIntentActivity"/>
+        <activity android:name=".java_main.TestPreIntentActivity" />
     </application>
 
 </manifest>

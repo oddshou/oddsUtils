@@ -73,6 +73,7 @@ public class MainRouteActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BActivity.class);
 //        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("extra1", "fromeMain");
         startActivityForResult(intent, 330);
     }
 
@@ -113,5 +114,13 @@ public class MainRouteActivity extends AppCompatActivity {
                 list, parcelable55, serialize66, new TestPreIntentActivity.ParcelableClass[]{parcelable55}, new TestPreIntentActivity.SerializeClass[]{serialize66},
                 list1, list2);
         startActivity(intent);
+    }
+
+    /**
+     * 点击进入自定义View
+     * @param view
+     */
+    public void toCustomView(View view) {
+
     }
 }
