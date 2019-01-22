@@ -60,13 +60,13 @@ class CustomViewActivity : AppCompatActivity() {
     companion object {
         const val MSG_1 = 1
     }
-    val mHandler:Handler = object :Handler(){
-        override fun handleMessage(msg: Message?) {
-            super.handleMessage(msg)
-            roundImage.progress += 1
-            this.sendEmptyMessageDelayed(MSG_1,100)
-        }
-    }
+//    val mHandler:Handler = object :Handler(){
+//        override fun handleMessage(msg: Message?) {
+//            super.handleMessage(msg)
+//            roundImage.progress += 1
+//            this.sendEmptyMessageDelayed(MSG_1,100)
+//        }
+//    }
 
     fun testImgClick(v: View){
         v.layoutParams.width = 20 + v.layoutParams.width

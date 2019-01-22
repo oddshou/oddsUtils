@@ -36,7 +36,7 @@ public class ImageProgress extends AppCompatImageView {
     private Paint mPaint;
     private Xfermode mXfermode;
     private int mBorderRadius;
-    private int mCurrentProgress = 2;
+    private int mCurrentProgress = 99;
     private RectF mRectF;
     private Drawable drawable;
 
@@ -133,7 +133,8 @@ public class ImageProgress extends AppCompatImageView {
 //        int w = drawable.getIntrinsicWidth() <= 0 ? getWidth() : drawable.getIntrinsicWidth();
 //        int h = drawable.getIntrinsicHeight() <= 0 ? getHeight() : drawable.getIntrinsicHeight();
 
-        int w = (int) (getWidth()* 0.01 * mCurrentProgress);
+//        int w = (int) (getWidth()* 0.01 * mCurrentProgress);
+        int w = drawable.getIntrinsicWidth();
         int h = drawable.getIntrinsicHeight();
 
         //这里没有使用图片尺寸，全部采用控件尺寸，以使适配控件图片填充
