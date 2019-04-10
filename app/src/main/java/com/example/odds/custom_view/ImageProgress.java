@@ -32,11 +32,10 @@ import com.blankj.utilcode.util.Utils;
 import androidx.appcompat.widget.AppCompatImageView;
 
 public class ImageProgress extends AppCompatImageView {
-
     private Paint mPaint;
     private Xfermode mXfermode;
     private int mBorderRadius;
-    private int mCurrentProgress = 99;
+    private int mCurrentProgress = 55;
     private RectF mRectF;
     private Drawable drawable;
 
@@ -64,10 +63,6 @@ public class ImageProgress extends AppCompatImageView {
      */
     public void setProgress(int progress) {
         mCurrentProgress = progress < 0 ? 0 : (progress > 100 ? 100 : progress);
-    }
-
-    public int getProgress(){
-        return mCurrentProgress;
     }
 
 
@@ -108,21 +103,6 @@ public class ImageProgress extends AppCompatImageView {
         }
     }
 
-    /**
-     * 图片拉升
-     *
-     * @param drawable
-     * @return
-     */
-    private Drawable exChangeSize(Drawable drawable){
-        float scale = 1.0f;
-        scale = Math.max(getWidth() * 1.0f / drawable.getIntrinsicWidth(), getHeight()
-                * 1.0f / drawable.getIntrinsicHeight());
-        drawable.setBounds(0, 0, (int) (scale * drawable.getIntrinsicWidth()),
-                (int) (scale * drawable.getIntrinsicHeight()));
-        return drawable;
-    }
-
 
     private Bitmap drawableToBitamp(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
@@ -134,8 +114,8 @@ public class ImageProgress extends AppCompatImageView {
 //        int h = drawable.getIntrinsicHeight() <= 0 ? getHeight() : drawable.getIntrinsicHeight();
 
 //        int w = (int) (getWidth()* 0.01 * mCurrentProgress);
-        int w = drawable.getIntrinsicWidth();
-        int h = drawable.getIntrinsicHeight();
+        int w = getWidth()/*drawable.getIntrinsicWidth()*/;
+        int h = getHeight()/*drawable.getIntrinsicHeight()*/;
 
         //这里没有使用图片尺寸，全部采用控件尺寸，以使适配控件图片填充
         Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);

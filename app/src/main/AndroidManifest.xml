@@ -9,6 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".MainRootActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".route.CustomViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +45,15 @@
         <activity
             android:name=".route.BActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".route.CActivity" />
+        <activity android:name=".route.CActivity"
+            android:label="route/CActivity哈哈"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
         <activity android:name=".route.RxActivity" />
         <activity android:name=".route.ThreadActivity" />
         <activity android:name=".route.DataBindingActivity" />
