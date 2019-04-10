@@ -6,8 +6,9 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-package com.example.odds.route
+package com.example.odds.custom_view.activity
 
+import android.animation.ValueAnimator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
@@ -25,22 +26,47 @@ import android.os.Message
 import android.view.View
 import java.util.*
 
-
+/**
+ * custom View 一个公共的展示 Activity
+ */
 class CustomViewActivity : AppCompatActivity() {
+
+    private lateinit var animator: ValueAnimator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_view)
 
-
-
-        //直接设置帧动画
+        //直接设置帧动画, ImageView 通过设置 AnimationDrawable 实现动画效果
         testImg.setImageResource(android.R.drawable.progress_indeterminate_horizontal)
-
         val drawable = testImg.drawable
         if (drawable is AnimationDrawable) {
             drawable.start()
         }
 
+        //创建值动画模拟进度增加
+        animator = ValueAnimator.ofInt(0, 100)
+        animator.duration = 5000
+        animator.repeatCount = -1
+        animator.addUpdateListener {
+            var value = it.animatedValue
+            if (value is Int && value < 10) {
+                value = 10
+            }
+            roundImage.setProgress(value as Int)
+            textView4.setText(value.toString())
+        }
+
+
     }
+
+    fun start(view: View){
+        if (animator.isStarted) {
+            animator.end()
+        }else{
+            animator.start()
+        }
+    }
+
+
 }
