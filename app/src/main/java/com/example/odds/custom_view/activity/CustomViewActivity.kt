@@ -9,33 +9,29 @@
 package com.example.odds.custom_view.activity
 
 import android.animation.ValueAnimator
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.animation.AnimationUtils
 import com.example.odds.R
 import kotlinx.android.synthetic.main.activity_custom_view.*
-import android.graphics.Shader.TileMode
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.Bitmap
 import android.graphics.drawable.AnimationDrawable
-import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.Rect
-import android.os.Handler
-import android.os.Message
 import android.view.View
-import java.util.*
+import com.example.odds.base.BaseActivity
 
 /**
- * custom View 一个公共的展示 Activity
+ * custom View 一个公共的展示 Activity。测试控件：
+ * 1. ImageProgress
  */
-class CustomViewActivity : AppCompatActivity() {
+class CustomViewActivity : BaseActivity() {
 
     private lateinit var animator: ValueAnimator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_view)
+        createIntroduction("测试控件：ImageProgress")
+
+
+        //----------------------------- ImageProgress TimeProgressView---------
+        time_progress_view.setShowCircle(true)
 
         //直接设置帧动画, ImageView 通过设置 AnimationDrawable 实现动画效果
         testImg.setImageResource(android.R.drawable.progress_indeterminate_horizontal)
@@ -50,6 +46,7 @@ class CustomViewActivity : AppCompatActivity() {
         animator.repeatCount = -1
         animator.addUpdateListener {
             var value = it.animatedValue
+            time_progress_view.setProgress(value as Int)
             if (value is Int && value < 10) {
                 value = 10
             }
@@ -67,6 +64,8 @@ class CustomViewActivity : AppCompatActivity() {
             animator.start()
         }
     }
+
+
 
 
 }

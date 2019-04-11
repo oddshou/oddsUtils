@@ -10,7 +10,6 @@ package com.example.odds.pre_intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -24,7 +23,6 @@ import com.example.odds.route.RxActivity;
 import com.odds.annotation.processor.PreIntent;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -69,7 +67,7 @@ public class TestPreIntentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PreIntent.onCreate_TestPreIntentActivity(savedInstanceState, this);
-        setContentView(R.layout.activity_main_java);
+        setContentView(R.layout.activity_test_pre_intent);
 
         TextView view = findViewById(R.id.args);
         view.setText(String.format(new Locale("zh"),"mName: %s\n" +

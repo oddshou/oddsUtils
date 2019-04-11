@@ -12,7 +12,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.LinearLayout
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.odds.adapter.SimpleAdapter
 import kotlinx.android.synthetic.main.activity_main_root.*
 import java.text.Collator
@@ -40,6 +43,7 @@ class MainRootActivity : AppCompatActivity() {
             path = ""
         }
         recycleView.adapter = SimpleAdapter(getData(path))
+        recycleView.addItemDecoration(DividerItemDecoration(this, LinearLayout.VERTICAL))
         recycleView.layoutManager = LinearLayoutManager(this)
     }
 
