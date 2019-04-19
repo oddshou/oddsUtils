@@ -9,9 +9,26 @@
         android:roundIcon="@mipmap/icon_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.ExtraAndFlagActivity"
-            android:label="功能/传参，flag"
-            >
+        <activity android:name=".animation.animActivity"
+            android:label="动画/测试1">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".features.ToolBarActivity"
+            android:label="AAAAA">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".features.ExtraAndFlagActivity"
+            android:label="功能/传参，flag">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,7 +72,8 @@
                 <category android:name="com.example.odds.set_root" />
             </intent-filter>
         </activity>
-        <activity android:name=".features.ScreenActivity"
+        <activity
+            android:name=".features.ScreenActivity"
             android:label="功能/屏幕参数">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -66,18 +84,18 @@
         <activity
             android:name=".features.BActivity"
             android:launchMode="singleTask" />
+        <activity android:name=".features.CActivity" />
         <activity
-            android:name=".features.CActivity"/>
-        <activity android:name=".route.RxActivity"
-            android:label="RxJava/Rx测试页1"
-            >
+            android:name=".route.RxActivity"
+            android:label="RxJava/Rx测试页1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="com.example.odds.set_root" />
             </intent-filter>
         </activity>
-        <activity android:name=".route.ThreadActivity"
+        <activity
+            android:name=".route.ThreadActivity"
             android:label="线程/线程测试页1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -85,7 +103,8 @@
                 <category android:name="com.example.odds.set_root" />
             </intent-filter>
         </activity>
-        <activity android:name=".route.DataBindingActivity"
+        <activity
+            android:name=".route.DataBindingActivity"
             android:label="功能/DataBinding">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

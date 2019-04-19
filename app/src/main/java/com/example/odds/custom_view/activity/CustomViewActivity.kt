@@ -27,7 +27,7 @@ class CustomViewActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_view)
-        createIntroduction("测试控件：ImageProgress")
+        createIntroduction("控件：ImageProgress")
 
 
         //----------------------------- ImageProgress TimeProgressView---------
