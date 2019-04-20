@@ -35,7 +35,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.annotation:annotation:1.0.2'
@@ -46,4 +46,6 @@ dependencies {
 
     ////https://github.com/Blankj/AndroidUtilCode
     implementation 'com.blankj:utilcode:1.22.7'
+    //https://github.com/chrisbanes/PhotoView 往后版本切到了Androidx库不兼容
+    implementation 'com.github.chrisbanes:PhotoView:2.1.4'
 }

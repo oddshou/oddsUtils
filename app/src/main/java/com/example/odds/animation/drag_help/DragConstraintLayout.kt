@@ -1,0 +1,136 @@
+/*
+ * Copyright (c) 2019. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+ * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+ * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+ * Vestibulum commodo. Ut rhoncus gravida arcu.
+ */
+
+package com.example.odds.animation.drag_help
+
+import android.content.Context
+import android.graphics.Point
+import android.util.AttributeSet
+import android.view.MotionEvent
+import android.view.View
+import androidx.annotation.Px
+
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.customview.widget.ViewDragHelper
+
+/**
+ * 第一种构造函数(首选)
+ */
+class DragConstraintLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
+    : ConstraintLayout(context, attrs, defStyleAttr) {
+
+    //第二种构造函数，
+//    constructor(context: Context) : super(context) {}
+//    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {}
+//    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
+
+    init {
+        init(context)
+    }
+
+    private lateinit var viewDragHelper: ViewDragHelper
+    private var dragRate: Float = 1f
+    private var point: Point = Point(0,0)
+
+    private fun init(context: Context) {
+        viewDragHelper = ViewDragHelper.create(this, Callback())
+    }
+
+    inner class Callback : ViewDragHelper.Callback(){
+        override fun tryCaptureView(child: View, pointerId: Int): Boolean {
+            //只作用域PhotoView
+            return true
+        }
+
+        override fun onViewDragStateChanged(state: Int) {}
+
+        override fun onViewPositionChanged(changedView: View, left: Int, top: Int, @Px dx: Int,
+                                           @Px dy: Int) {
+            dragRate = 1 - top.toFloat()/changedView.height
+            viewDragHelper.capturedView?.scaleX = dragRate
+            viewDragHelper.capturedView?.scaleY = dragRate
+            this@DragConstraintLayout.background.alpha = (dragRate * 255).toInt()
+        }
+        override fun onViewCaptured(capturedChild: View, activePointerId: Int) {
+            point.x = getChildAt(0).left
+            point.y = getChildAt(0).top
+        }
+
+        override fun onViewReleased(releasedChild: View, xvel: Float, yvel: Float) {
+            //松手
+            //dragRate > 0.7 回弹,else finish
+            if (dragRate > 0.7) {
+                //回调过程中没有平滑过渡背景alpha导致背景闪烁
+                viewDragHelper.settleCapturedViewAt(point.x, point.y)
+                invalidate()
+            }else{
+                mListener.mfinishAction?.invoke()
+            }
+            this@DragConstraintLayout.background.alpha = 255
+        }
+
+        override fun onEdgeTouched(edgeFlags: Int, pointerId: Int) {}
+
+        override fun onEdgeLock(edgeFlags: Int): Boolean {
+            return false
+        }
+        override fun onEdgeDragStarted(edgeFlags: Int, pointerId: Int) {}
+
+        override fun getOrderedChildIndex(index: Int): Int {
+            return index
+        }
+//            override fun getViewHorizontalDragRange(child: View): Int {
+//                return 0
+//            }
+//
+//            override fun getViewVerticalDragRange(child: View): Int {
+//                return 0
+//            }
+        override fun clampViewPositionHorizontal(child: View, left: Int, dx: Int): Int {
+            return left
+        }
+
+        override fun clampViewPositionVertical(child: View, top: Int, dy: Int): Int {
+            return Math.max(top,0)
+        }
+    }
+
+    override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
+        return viewDragHelper.shouldInterceptTouchEvent(ev)
+    }
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        viewDragHelper.processTouchEvent(event)
+        return true
+    }
+
+    override fun computeScroll() {
+        super.computeScroll()
+        if(viewDragHelper.continueSettling(true))
+        {
+            invalidate();
+        }
+    }
+
+    //---------- callback
+    private lateinit var mListener: ListenerBuilder
+
+    fun setListener(listenerBuilder: ListenerBuilder.() -> Unit) {
+        mListener = ListenerBuilder().also(listenerBuilder)
+    }
+
+    inner class ListenerBuilder {
+        internal var mfinishAction: (() -> Unit)? = null
+
+        fun onfinish(action: () -> Unit) {
+            mfinishAction = action
+        }
+    }
+    //---------- callback end
+
+}

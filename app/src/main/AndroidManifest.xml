@@ -9,7 +9,32 @@
         android:roundIcon="@mipmap/icon_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".animation.animActivity"
+        <activity android:name=".animation.drag_help.DragAActivity"
+            android:label="动画/拖拽图片">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".animation.drag_help.DragActivity"
+
+            android:theme="@style/AppTheme.Transparent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".animation.animActivity"
             android:label="动画/测试1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
