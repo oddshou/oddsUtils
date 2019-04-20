@@ -41,6 +41,9 @@ class DragConstraintLayout @JvmOverloads constructor(context: Context, attrs: At
         viewDragHelper = ViewDragHelper.create(this, Callback())
     }
 
+    /**
+     * 关于多指点击，onViewReleased 全部释放才会调用，tryCaptureView，onViewCaptured 释放一指会调用一次
+     */
     inner class Callback : ViewDragHelper.Callback(){
         override fun tryCaptureView(child: View, pointerId: Int): Boolean {
             //只作用域PhotoView
@@ -56,10 +59,7 @@ class DragConstraintLayout @JvmOverloads constructor(context: Context, attrs: At
             viewDragHelper.capturedView?.scaleY = dragRate
             this@DragConstraintLayout.background.alpha = (dragRate * 255).toInt()
         }
-        override fun onViewCaptured(capturedChild: View, activePointerId: Int) {
-            point.x = getChildAt(0).left
-            point.y = getChildAt(0).top
-        }
+        override fun onViewCaptured(capturedChild: View, activePointerId: Int) {}
 
         override fun onViewReleased(releasedChild: View, xvel: Float, yvel: Float) {
             //松手
@@ -115,6 +115,12 @@ class DragConstraintLayout @JvmOverloads constructor(context: Context, attrs: At
         {
             invalidate();
         }
+    }
+
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+        super.onLayout(changed, left, top, right, bottom)
+        point.x = getChildAt(0).left
+        point.y = getChildAt(0).top
     }
 
     //---------- callback
