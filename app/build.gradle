@@ -47,5 +47,5 @@ dependencies {
     ////https://github.com/Blankj/AndroidUtilCode
     implementation 'com.blankj:utilcode:1.22.7'
     //https://github.com/chrisbanes/PhotoView 往后版本切到了Androidx库不兼容
-    implementation 'com.github.chrisbanes:PhotoView:2.1.4'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 }

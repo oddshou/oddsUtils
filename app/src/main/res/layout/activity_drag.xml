@@ -24,7 +24,7 @@
         <!--android:src="@drawable/img_logo"-->
         <!--/>-->
 
-    <ImageView
+    <com.example.odds.animation.drag_help.DragScalePhotoImg
         android:id="@+id/dragImg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
