@@ -192,6 +192,6 @@ class CustomGestureDetector {
         mActivePointerIndex = ev
                 .findPointerIndex(mActivePointerId != INVALID_POINTER_ID ? mActivePointerId
                         : 0);
-        return true;
+        return mIsDragging;
     }
 }

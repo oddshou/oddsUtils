@@ -33,12 +33,12 @@ class DragConstraintLayout @JvmOverloads constructor(context: Context, attrs: At
         init(context)
     }
 
-    private lateinit var viewDragHelper: ViewDragHelper
+    private lateinit var mLeftDragger: ViewDragHelper
     private var dragRate: Float = 1f
     private var point: Point = Point(0,0)
 
     private fun init(context: Context) {
-        viewDragHelper = ViewDragHelper.create(this, Callback())
+        mLeftDragger = ViewDragHelper.create(this, Callback())
     }
 
     /**
@@ -47,7 +47,7 @@ class DragConstraintLayout @JvmOverloads constructor(context: Context, attrs: At
     inner class Callback : ViewDragHelper.Callback(){
         override fun tryCaptureView(child: View, pointerId: Int): Boolean {
             //只作用域PhotoView
-            return true
+            return false
         }
 
         override fun onViewDragStateChanged(state: Int) {}
@@ -55,8 +55,8 @@ class DragConstraintLayout @JvmOverloads constructor(context: Context, attrs: At
         override fun onViewPositionChanged(changedView: View, left: Int, top: Int, @Px dx: Int,
                                            @Px dy: Int) {
             dragRate = 1 - top.toFloat()/changedView.height
-            viewDragHelper.capturedView?.scaleX = dragRate
-            viewDragHelper.capturedView?.scaleY = dragRate
+            mLeftDragger.capturedView?.scaleX = dragRate
+            mLeftDragger.capturedView?.scaleY = dragRate
             this@DragConstraintLayout.background.alpha = (dragRate * 255).toInt()
         }
         override fun onViewCaptured(capturedChild: View, activePointerId: Int) {}
@@ -66,7 +66,7 @@ class DragConstraintLayout @JvmOverloads constructor(context: Context, attrs: At
             //dragRate > 0.7 回弹,else finish
             if (dragRate > 0.7) {
                 //回调过程中没有平滑过渡背景alpha导致背景闪烁
-                viewDragHelper.settleCapturedViewAt(point.x, point.y)
+                mLeftDragger.settleCapturedViewAt(point.x, point.y)
                 invalidate()
             }else{
                 mListener.mfinishAction?.invoke()
@@ -100,18 +100,85 @@ class DragConstraintLayout @JvmOverloads constructor(context: Context, attrs: At
         }
     }
 
+    //event
+    private var mInitialMotionX: Float = 0.toFloat()
+    private var mInitialMotionY: Float = 0.toFloat()
+    //event
+
+//    override fun onTouchEvent(event: MotionEvent): Boolean {
+//        mLeftDragger.processTouchEvent(event)
+//        return true
+//    }
+
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
-        return viewDragHelper.shouldInterceptTouchEvent(ev)
+        return mLeftDragger.shouldInterceptTouchEvent(ev)
     }
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        viewDragHelper.processTouchEvent(event)
-        return true
+//    override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
+//        val action = ev.actionMasked
+//
+//        // "|" used deliberately here; both methods should be invoked.
+//        val interceptForDrag = mLeftDragger.shouldInterceptTouchEvent(ev)
+//
+//        var interceptForTap = false
+//
+//        when (action) {
+//            MotionEvent.ACTION_DOWN -> {
+//                val x = ev.x
+//                val y = ev.y
+//                mInitialMotionX = x
+//                mInitialMotionY = y
+//                if (mScrimOpacity > 0) {
+//                    val child = mLeftDragger.findTopChildUnder(x.toInt(), y.toInt())
+//                    if (child != null && isContentView(child)) {
+//                        interceptForTap = true
+//                    }
+//                }
+//            }
+//
+//            MotionEvent.ACTION_MOVE -> {
+//                // If we cross the touch slop, don't perform the delayed peek for an edge touch.
+//                if (mLeftDragger.checkTouchSlop(ViewDragHelper.DIRECTION_ALL)) {
+//                }
+//            }
+//
+//            MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
+//            }
+//        }
+//
+//        return interceptForDrag || interceptForTap
+//    }
+//
+    override fun onTouchEvent(ev: MotionEvent): Boolean {
+        mLeftDragger.processTouchEvent(ev)
+
+        val action = ev.getAction()
+        val wantTouchEvents = true
+
+        when (action and MotionEvent.ACTION_MASK) {
+            MotionEvent.ACTION_DOWN -> {
+                val x = ev.getX()
+                val y = ev.getY()
+                mInitialMotionX = x
+                mInitialMotionY = y
+            }
+            MotionEvent.ACTION_MOVE ->{
+
+            }
+
+            MotionEvent.ACTION_UP -> {
+            }
+
+            MotionEvent.ACTION_CANCEL -> {
+            }
+        }
+
+        return wantTouchEvents
     }
 
     override fun computeScroll() {
         super.computeScroll()
-        if(viewDragHelper.continueSettling(true))
+        if(mLeftDragger.continueSettling(true))
         {
             invalidate();
         }
