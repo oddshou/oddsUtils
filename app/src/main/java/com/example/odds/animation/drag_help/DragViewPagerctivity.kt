@@ -28,14 +28,14 @@ class DragViewPagerctivity : AppCompatActivity() {
         container1.setBackgroundColor(Color.parseColor("#FF000000"))
         val view1 = PhotoView(this)
         view1.setImageResource(R.drawable.img_logo)
-        container1.addView(view1, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT))
-        viewList.add(container1)
+//        container1.addView(view1, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT))
+        viewList.add(view1)
         val container2 = DragConstraintLayout(this)
         container2.setBackgroundColor(Color.parseColor("#FF000000"))
         val view2 = PhotoView(this)
         view2.setImageResource(R.drawable.hsgame_btn_hot_press)
-        container2.addView(view2, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT))
-        viewList.add(container2)
+//        container2.addView(view2, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT))
+        viewList.add(view2)
 
 
         viewPager.adapter = InnerPagerAdapter(viewList)

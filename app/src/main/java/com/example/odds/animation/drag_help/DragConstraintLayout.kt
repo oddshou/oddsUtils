@@ -100,12 +100,7 @@ class DragConstraintLayout @JvmOverloads constructor(context: Context, attrs: At
         }
     }
 
-    //event
-    private var mInitialMotionX: Float = 0.toFloat()
-    private var mInitialMotionY: Float = 0.toFloat()
-    //event
 
-    private var isDraging = false
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
         val action = ev.actionMasked
@@ -117,27 +112,14 @@ class DragConstraintLayout @JvmOverloads constructor(context: Context, attrs: At
 
         when (action) {
             MotionEvent.ACTION_DOWN -> {
-                val x = ev.x
-                val y = ev.y
-                mInitialMotionX = x
-                mInitialMotionY = y
             }
 
             MotionEvent.ACTION_MOVE -> {
-                // 判断竖向移动距离达到要求拦截
-                if (isDraging) {
-                    handle = true
-                }else{
-                    handle = mLeftDragger.checkTouchSlop(ViewDragHelper.DIRECTION_VERTICAL)
-                }
-                if (handle) {
-                    parent.requestDisallowInterceptTouchEvent(true)
-                    isDraging = true
-                }
+                handle = mLeftDragger.checkTouchSlop(ViewDragHelper.DIRECTION_VERTICAL)
+
             }
 
             MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
-                isDraging = false
             }
         }
 

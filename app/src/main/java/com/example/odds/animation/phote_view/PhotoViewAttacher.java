@@ -24,6 +24,8 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.OverScroller;
 
+import com.blankj.utilcode.util.LogUtils;
+
 /**
  * The component of {@link PhotoView} which does the work allowing for zooming, scaling, panning, etc.
  * It is made public in case you need to subclass something other than AppCompatImageView and still
@@ -170,6 +172,7 @@ public class PhotoViewAttacher implements View.OnTouchListener,
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2,
                 float velocityX, float velocityY) {
+                LogUtils.i("GestureDetectoronFling e1:" + e1 + " \n e2: " + e2);
                 if (mSingleFlingListener != null) {
                     if (getScale() > DEFAULT_MIN_SCALE) {
                         return false;
@@ -181,6 +184,12 @@ public class PhotoViewAttacher implements View.OnTouchListener,
                     return mSingleFlingListener.onFling(e1, e2, velocityX, velocityY);
                 }
                 return false;
+            }
+
+            @Override
+            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                LogUtils.i("GestureDetector onScroll e1:" + e1 + " \n e2: " + e2);
+                return super.onScroll(e1, e2, distanceX, distanceY);
             }
         });
         mGestureDetector.setOnDoubleTapListener(new GestureDetector.OnDoubleTapListener() {
