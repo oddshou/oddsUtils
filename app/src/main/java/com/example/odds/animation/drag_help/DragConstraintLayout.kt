@@ -47,7 +47,7 @@ class DragConstraintLayout @JvmOverloads constructor(context: Context, attrs: At
     inner class Callback : ViewDragHelper.Callback(){
         override fun tryCaptureView(child: View, pointerId: Int): Boolean {
             //只作用域PhotoView
-            return false
+            return true
         }
 
         override fun onViewDragStateChanged(state: Int) {}
@@ -105,75 +105,68 @@ class DragConstraintLayout @JvmOverloads constructor(context: Context, attrs: At
     private var mInitialMotionY: Float = 0.toFloat()
     //event
 
-//    override fun onTouchEvent(event: MotionEvent): Boolean {
-//        mLeftDragger.processTouchEvent(event)
-//        return true
-//    }
+    private var isDraging = false
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
-        return mLeftDragger.shouldInterceptTouchEvent(ev)
-    }
+        val action = ev.actionMasked
 
-//    override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
-//        val action = ev.actionMasked
-//
-//        // "|" used deliberately here; both methods should be invoked.
-//        val interceptForDrag = mLeftDragger.shouldInterceptTouchEvent(ev)
-//
-//        var interceptForTap = false
-//
-//        when (action) {
-//            MotionEvent.ACTION_DOWN -> {
-//                val x = ev.x
-//                val y = ev.y
-//                mInitialMotionX = x
-//                mInitialMotionY = y
-//                if (mScrimOpacity > 0) {
-//                    val child = mLeftDragger.findTopChildUnder(x.toInt(), y.toInt())
-//                    if (child != null && isContentView(child)) {
-//                        interceptForTap = true
-//                    }
-//                }
-//            }
-//
-//            MotionEvent.ACTION_MOVE -> {
-//                // If we cross the touch slop, don't perform the delayed peek for an edge touch.
-//                if (mLeftDragger.checkTouchSlop(ViewDragHelper.DIRECTION_ALL)) {
-//                }
-//            }
-//
-//            MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
-//            }
-//        }
-//
-//        return interceptForDrag || interceptForTap
-//    }
-//
-    override fun onTouchEvent(ev: MotionEvent): Boolean {
-        mLeftDragger.processTouchEvent(ev)
+        // "|" used deliberately here; both methods should be invoked.
+        val interceptForDrag = mLeftDragger.shouldInterceptTouchEvent(ev)
 
-        val action = ev.getAction()
-        val wantTouchEvents = true
+        var handle = false
 
-        when (action and MotionEvent.ACTION_MASK) {
+        when (action) {
             MotionEvent.ACTION_DOWN -> {
-                val x = ev.getX()
-                val y = ev.getY()
+                val x = ev.x
+                val y = ev.y
                 mInitialMotionX = x
                 mInitialMotionY = y
             }
-            MotionEvent.ACTION_MOVE ->{
 
+            MotionEvent.ACTION_MOVE -> {
+                // 判断竖向移动距离达到要求拦截
+                if (isDraging) {
+                    handle = true
+                }else{
+                    handle = mLeftDragger.checkTouchSlop(ViewDragHelper.DIRECTION_VERTICAL)
+                }
+                if (handle) {
+                    parent.requestDisallowInterceptTouchEvent(true)
+                    isDraging = true
+                }
             }
 
-            MotionEvent.ACTION_UP -> {
-            }
-
-            MotionEvent.ACTION_CANCEL -> {
+            MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
+                isDraging = false
             }
         }
 
-        return wantTouchEvents
+        return interceptForDrag || handle
+    }
+
+    override fun onTouchEvent(ev: MotionEvent): Boolean {
+        mLeftDragger.processTouchEvent(ev)
+//
+//        val action = ev.getAction()
+//
+//        when (action and MotionEvent.ACTION_MASK) {
+//            MotionEvent.ACTION_DOWN -> {
+//                val x = ev.getX()
+//                val y = ev.getY()
+//                mInitialMotionX = x
+//                mInitialMotionY = y
+//            }
+//            MotionEvent.ACTION_MOVE ->{
+//            }
+//
+//            MotionEvent.ACTION_UP -> {
+//            }
+//
+//            MotionEvent.ACTION_CANCEL -> {
+//            }
+//        }
+
+        return /*isDraging*/true
     }
 
     override fun computeScroll() {

@@ -192,6 +192,6 @@ class CustomGestureDetector {
         mActivePointerIndex = ev
                 .findPointerIndex(mActivePointerId != INVALID_POINTER_ID ? mActivePointerId
                         : 0);
-        return mIsDragging;
+        return  true/*mIsDragging || isScaling()*/;
     }
 }

@@ -9,7 +9,16 @@
         android:roundIcon="@mipmap/icon_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".animation.drag_help.DragAActivity"
+        <activity android:name=".animation.drag_help.DragViewPagerctivity"
+            android:label="动画/viewPager图片">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".animation.drag_help.DragAActivity"
             android:label="动画/拖拽图片">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +28,6 @@
         </activity>
         <activity
             android:name=".animation.drag_help.DragActivity"
-
             android:theme="@style/AppTheme.Transparent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
