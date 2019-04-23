@@ -9,7 +9,17 @@
         android:roundIcon="@mipmap/icon_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".animation.drag_help.DragViewPagerctivity"
+        <activity android:name=".imageView.MatrixActivity"
+            android:theme="@style/AppTheme.FullScreen"
+            android:label="ImageView/matrix">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".animation.drag_help.DragViewPagerctivity"
             android:label="动画/viewPager图片">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
