@@ -16,6 +16,7 @@ import android.view.View
 import android.widget.TextView
 
 import com.example.odds.R
+import kotlinx.android.synthetic.main.activity_screen.*
 
 /**
  *
@@ -42,7 +43,7 @@ class ScreenActivity : AppCompatActivity() {
 
 
         val texts = "densityDpi: " + densityDpi + "\n" +
-                "scaledDensity: " + scaledDensity + "\n" +
+                "字体scaledDensity: " + scaledDensity + "\n" +
                 "density: " + density + "\n" +
                 "xdpi: " + xdpi + "\n" +
                 "ydpi: " + ydpi + "\n" +
@@ -58,6 +59,6 @@ class ScreenActivity : AppCompatActivity() {
         //
         //        return (float) Math.sqrt(width2+height2);
 
-        (findViewById<View>(R.id.text) as TextView).text = texts
+        text.text = texts
     }
 }
