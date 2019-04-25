@@ -101,7 +101,7 @@
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AnticipateInterpolator" />
+            android:text="AnticipateOvershootInterpolator" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/BounceInterpolator"
