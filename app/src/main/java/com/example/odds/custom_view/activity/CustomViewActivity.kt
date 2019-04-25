@@ -41,17 +41,18 @@ class CustomViewActivity : BaseActivity() {
         }
 
         //创建值动画模拟进度增加
-        animator = ValueAnimator.ofInt(0, 100)
-        animator.duration = 5000
-        animator.repeatCount = -1
-        animator.addUpdateListener {
-            var value = it.animatedValue
-            time_progress_view.setProgress(value as Int)
-            if (value is Int && value < 10) {
-                value = 10
+        animator = ValueAnimator.ofInt(0, 100).apply {
+            duration = 5000
+            repeatCount = -1
+            addUpdateListener {
+                var value = it.animatedValue
+                time_progress_view.setProgress(value as Int)
+                if (value is Int && value < 10) {
+                    value = 10
+                }
+                roundImage.setProgress(value as Int)
+                textView4.setText(value.toString())
             }
-            roundImage.setProgress(value as Int)
-            textView4.setText(value.toString())
         }
 
 

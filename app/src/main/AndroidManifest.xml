@@ -9,9 +9,19 @@
         android:roundIcon="@mipmap/icon_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".imageView.MatrixActivity"
-            android:theme="@style/AppTheme.FullScreen"
-            android:label="ImageView/matrix">
+        <activity android:name=".animation.InterpolatorActivity"
+            android:label="动画/插值器"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".imageView.MatrixActivity"
+            android:label="ImageView/matrix"
+            android:theme="@style/AppTheme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
