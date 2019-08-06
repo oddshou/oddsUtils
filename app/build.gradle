@@ -46,7 +46,7 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
 
 //    kapt project(':compiler')
-    annotationProcessor project(':compiler')
+    annotationProcessor "com.github.oddshou:compiler:1.4.2"
     implementation project(':annotations')
 
     ////https://github.com/Blankj/AndroidUtilCode
