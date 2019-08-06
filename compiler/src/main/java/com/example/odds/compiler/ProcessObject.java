@@ -16,17 +16,27 @@ import javax.lang.model.element.Modifier;
 class ProcessObject {
     List<ParameterSpec> parameterSpecList = new ArrayList<>();
 
-    ProcessObject(Element element) {
-        ParameterSpec android = ParameterSpec.builder(TypeName.get(element.asType()), element.getSimpleName().toString())
-                .addModifiers(Modifier.FINAL)
-                .build();
-        parameterSpecList.add(android);
+    List<String> serializeList = new ArrayList<>();
+    List<String> parcelableList = new ArrayList<>();
+
+    ProcessObject(Element element, boolean serialize, boolean parcelable, int order) {
+        addFile(element, serialize, parcelable, order);
     }
 
-    void addFile(Element element) {
+    void addFile(Element element, boolean serialize, boolean parcelable, int order) {
         ParameterSpec android = ParameterSpec.builder(TypeName.get(element.asType()), element.getSimpleName().toString())
                 .addModifiers(Modifier.FINAL)
                 .build();
-        parameterSpecList.add(android);
+        if (order >= 0 && order <= parameterSpecList.size()) {
+            parameterSpecList.add(order, android);
+        }else {
+            parameterSpecList.add(android);
+        }
+        if (serialize) {
+            serializeList.add(element.getSimpleName().toString());
+        }
+        if (parcelable) {
+            parcelableList.add(element.getSimpleName().toString());
+        }
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".route.CActivity">
+    tools:context=".features.CActivity">
 
     <Button
         android:id="@+id/button3"
@@ -13,7 +13,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:text="Cactivity"
+        android:text="设置data 作为result finish"
+        android:textAllCaps="false"
         android:onClick="clickBtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
