@@ -21,15 +21,15 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.oddshou.AndroidSomeTest:annotations:1.3.1'
-    kapt 'com.github.oddshou.AndroidSomeTest:compiler:1.3.1'
-    //annotationProcessor 'com.github.oddshou.AndroidSomeTest:compiler:1.3.1'
+    implementation 'com.github.oddshou.oddsUtils:annotations:1.4.3'
+    kapt 'com.github.oddshou.oddsUtils:compiler:1.4.3'
+    //annotationProcessor 'com.github.oddshou.oddsUtils:compiler:1.4.3'
 }
 ```
 ##### Demo
 
 PreIntent demo 路径：AndroidSomeTest/app/src/main/java/com/example/odds/java_main/`TestPreIntentActivity.java`
-[![](https://jitpack.io/v/oddshou/AndroidSomeTest.svg)](https://jitpack.io/#oddshou/AndroidSomeTest)
+[![](https://jitpack.io/v/oddshou/oddsUtils.svg)](https://jitpack.io/#oddshou/oddsUtils)
 
 用法：给Activity public成员添加 @InitFile 注解 会在编译时生成 `PreIntent.java`并在其内生成3个以该Activity名称为后缀的对应方法。
 
@@ -85,7 +85,7 @@ Intent intent = PreIntent.preIntent_MainActivityJava(this, "哈哈哈", true, 11
 startActivity(intent);
 ```
 ##### Kotlin
-主要区别在于成员注解,需要使用额外使用JvmField 取消属性 get，set方法，其他和 java 一直
+主要区别在于成员注解,需要使用额外使用JvmField 取消属性 get，set方法，其他和 java 一样
 ```java
 @InitFile
 @JvmField
