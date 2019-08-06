@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+//apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -46,7 +46,7 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
 
 //    kapt project(':compiler')
-    annotationProcessor "com.github.oddshou:compiler:1.4.2"
+    annotationProcessor project(':compiler')
     implementation project(':annotations')
 
     ////https://github.com/Blankj/AndroidUtilCode
