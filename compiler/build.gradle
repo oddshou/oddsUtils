@@ -5,10 +5,11 @@ apply plugin: 'com.github.dcendents.android-maven'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.google.auto.service:auto-service:1.0-rc2' //自动注册注解处理器
-    implementation 'com.squareup:javapoet:1.11.0' //javapoet代码生成框架
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc6'
+    compileOnly 'com.google.auto.service:auto-service:1.0-rc6' //自动注册注解处理器
+    implementation 'com.squareup:javapoet:1.11.1' //javapoet代码生成框架
     implementation project(':annotations') //依赖注解模块
 }
 
-sourceCompatibility = "7"
-targetCompatibility = "7"
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
