@@ -9,9 +9,29 @@
         android:roundIcon="@mipmap/icon_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".animation.InterpolatorActivity"
-            android:label="动画/插值器"
-            >
+
+        <activity android:name=".MainRootActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.odds-hou.com"
+                    android:pathPrefix="/active"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".animation.InterpolatorActivity"
+            android:label="动画/插值器">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -97,25 +117,6 @@
                 <category android:name="com.example.odds.set_root" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainRootActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="www.odds-hou.com"
-                    android:pathPrefix="/active"
-                    android:scheme="http" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".custom_view.activity.CustomViewActivity"
             android:label="自定义View/common1">
@@ -166,6 +167,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".pre_intent.TestPreIntentActivity" />
+
+        <activity android:name=".animation.Anim2Activity"
+            android:label="动画/动画demo"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
