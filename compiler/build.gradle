@@ -1,14 +1,18 @@
 apply plugin: 'java-library'
 //启用Jitpack 插件
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc6'
+    kapt 'com.google.auto.service:auto-service:1.0-rc6'
     compileOnly 'com.google.auto.service:auto-service:1.0-rc6' //自动注册注解处理器
-    implementation 'com.squareup:javapoet:1.11.1' //javapoet代码生成框架
-    implementation project(':annotations') //依赖注解模块
+//    implementation 'com.squareup:javapoet:1.11.1' //javapoet代码生成框架
+    implementation 'com.squareup:kotlinpoet:1.3.0'  //kotlinPoet
+    implementation project(':annotations')
 }
 
 sourceCompatibility = "1.7"

@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.odds.R
-import com.odds.annotation.processor.PreIntent
+//import com.odds.annotation.processor.PreIntent
 import java.util.ArrayList
 
 /**
@@ -40,9 +40,9 @@ class PreIntentOriginActivity : AppCompatActivity() {
         list1.add(parcelable55)
         val list2 = ArrayList<TestPreIntentActivity.SerializeClass>()
         list2.add(serialize66)
-        val intent = PreIntent.preIntent_TestPreIntentActivity(this, "哈哈哈", true, 111, bundle,
-                list, parcelable55, serialize66, arrayOf(parcelable55), arrayOf(serialize66),
-                list1, list2)
+//        val intent = PreIntent.preIntent_TestPreIntentActivity(this, "哈哈哈", true, 111, bundle,
+//                list, parcelable55, serialize66, arrayOf(parcelable55), arrayOf(serialize66),
+//                list1, list2)
         startActivity(intent)
     }
 }

@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.example.odds.R;
 import com.example.odds.annotations.InitFile;
 import com.example.odds.route.RxActivity;
-import com.odds.annotation.processor.PreIntent;
+//import com.odds.annotation.processor.PreIntent;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -31,6 +31,8 @@ import java.util.Locale;
 public class TestPreIntentActivity extends AppCompatActivity {
     //尽量用order 来规定参数顺序，避免因调整成员定义顺序导致调用异常
     //order 非必填
+    @InitFile(Serializable = true, order = 4)
+    public List<String> ages;
     @InitFile(order = 0)
     public String mName;
     @InitFile(order = 1)
@@ -39,8 +41,6 @@ public class TestPreIntentActivity extends AppCompatActivity {
     public int num;
     @InitFile(order = 3)
     public Bundle bundle = new Bundle();
-    @InitFile(Serializable = true, order = 4)
-    public List<String> ages;
     @InitFile
     public ParcelableClass parcelableClass;
     @InitFile
@@ -58,7 +58,7 @@ public class TestPreIntentActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        PreIntent.onSave_TestPreIntentActivity(outState, this);
+//        PreIntent.onSave_TestPreIntentActivity(outState, this);
         super.onSaveInstanceState(outState);
     }
 
@@ -66,7 +66,7 @@ public class TestPreIntentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        PreIntent.onCreate_TestPreIntentActivity(savedInstanceState, this);
+//        PreIntent.onCreate_TestPreIntentActivity(savedInstanceState, this);
         setContentView(R.layout.activity_test_pre_intent);
 
         TextView view = findViewById(R.id.args);
