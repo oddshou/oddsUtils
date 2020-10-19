@@ -30,6 +30,10 @@ android {
     }
 }
 
+//repositories{
+//    jcenter()
+//}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
@@ -50,7 +54,7 @@ dependencies {
     implementation project(':annotations')
 
     ////https://github.com/Blankj/AndroidUtilCode
-    implementation 'com.blankj:utilcode:1.24.0'
+    implementation 'com.blankj:utilcodex:1.29.0'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'com.google.android.material:material:1.0.0'
 

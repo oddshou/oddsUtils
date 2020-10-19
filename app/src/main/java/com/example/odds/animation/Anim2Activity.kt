@@ -60,19 +60,15 @@ class Anim2Activity : AppCompatActivity() {
             //必须都实现
             addListener(object : Animator.AnimatorListener {
                 override fun onAnimationRepeat(p0: Animator?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun onAnimationEnd(p0: Animator?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun onAnimationStart(p0: Animator?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun onAnimationCancel(p0: Animator?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
 
             })

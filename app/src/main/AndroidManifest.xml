@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.odds">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <!-- 得到屏幕正常的物理尺寸 -->
+    <supports-screens
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:resizeable="true"
+        android:anyDensity="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/icon_launcher"
@@ -9,7 +19,23 @@
         android:roundIcon="@mipmap/icon_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".features.AppShowActivity"
+            android:label="功能/本机安装应用信息">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="功能/LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MainRootActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -167,10 +193,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".pre_intent.TestPreIntentActivity" />
-
-        <activity android:name=".animation.Anim2Activity"
-            android:label="动画/动画demo"
-            >
+        <activity
+            android:name=".animation.Anim2Activity"
+            android:label="动画/动画demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
