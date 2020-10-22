@@ -10,6 +10,9 @@ import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationSet
+import android.view.animation.AnimationUtils
+import android.view.animation.ScaleAnimation
 import com.example.odds.R
 import kotlinx.android.synthetic.main.activity_anim2.*
 
@@ -75,7 +78,7 @@ class Anim2Activity : AppCompatActivity() {
             /**
              * 可以只实现部分方法
              */
-            addListener(object: AnimatorListenerAdapter(){
+            addListener(object : AnimatorListenerAdapter() {
 //                override fun onAnimationCancel(animation: Animator) {
 //                    throw RuntimeException("Stub!")
 //                }
@@ -101,5 +104,16 @@ class Anim2Activity : AppCompatActivity() {
 //                }
             })
         }
+    }
+
+    fun startAnim(btn: View) {
+        val anim = AnimationUtils.loadAnimation(this, R.anim.loading)
+        viewLoading.startAnimation(anim)
+    }
+
+    fun createAnim(){
+        val animSet = AnimationSet(true)
+        val scaleAnimation = ScaleAnimation(1.0f, 1.0f, 0.0f, 1.0f, 0.5f, 0.5f)
+        animSet.addAnimation(scaleAnimation)
     }
 }
