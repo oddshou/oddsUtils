@@ -10,6 +10,7 @@ package com.example.odds.base
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.TextView
@@ -22,6 +23,11 @@ import com.example.odds.R
  * base Activity
  */
 abstract class BaseActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+
+    }
 
     /**
      * 添加介绍文字，需要设置根目录为 root

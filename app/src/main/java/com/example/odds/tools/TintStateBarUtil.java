@@ -39,8 +39,8 @@ public class TintStateBarUtil {
         if (!isStatusBarTintSupported() || activity == null) {
             return;
         }
-        setStatusBarTranslucent(activity);
-        boolean success = setStatusBarIconDark(activity, isMakeIconDark);
+        setStatusBarTranslucent(activity.getWindow());
+        boolean success = setStatusBarIconDark(activity.getWindow(), isMakeIconDark);
         // 如果系统栏灰色icon失败，对状态栏整个进行着色，以突出文字颜色
         if (!success) {
             //给decView设置tag的目的是，在重复着色时，SystemBarTintManager会不停的new View，导致多层View叠加
@@ -75,12 +75,9 @@ public class TintStateBarUtil {
 
     /**
      * 设置系统状态栏背景是否透明
-     *
-     * @param activity
      */
-    public static void setStatusBarTranslucent(Activity activity) {
-        if (isStatusBarTintSupported() && activity != null) {
-            Window window = activity.getWindow();
+    public static void setStatusBarTranslucent(Window window) {
+        if (isStatusBarTintSupported()) {
             // Activity不可见
             if (window == null) {
                 return;
@@ -105,19 +102,17 @@ public class TintStateBarUtil {
     /**
      * 设置系统状态栏Icon是否为灰色 在小米、魅族及6.0+系统能设置成功
      *
-     * @param activity
      * @param isDark
      * @return 返回设置是否成功
      */
-    public static boolean setStatusBarIconDark(Activity activity, boolean isDark) {
-        if (!isSupportDarkIcon || activity == null) {
+    public static boolean setStatusBarIconDark(Window window, boolean isDark) {
+        if (!isSupportDarkIcon) {
             return false;
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {//不支持沉浸式 icon默认为白色
             isSupportDarkIcon = false;
             return false;
         }
-        Window window = activity.getWindow();
         // Activity不可见
         if (window == null) {
             return false;

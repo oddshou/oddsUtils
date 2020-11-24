@@ -39,7 +39,9 @@
         android:layout_height="wrap_content"
         android:background="@color/cardview_dark_background"
         android:fitsSystemWindows="true"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="100dp"
+        >
 
         <TextView
             android:id="@+id/textTest"
