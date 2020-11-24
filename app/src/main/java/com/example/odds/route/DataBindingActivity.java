@@ -1,21 +1,19 @@
 package com.example.odds.route;
 
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.Observable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.Observable;
-
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 
-import com.example.odds.model.Person;
 import com.example.odds.BR;
 import com.example.odds.R;
 import com.example.odds.databinding.ActivityDataBindingBinding;
+import com.example.odds.model.Person;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.Observable;
 
 public class DataBindingActivity extends AppCompatActivity {
     String TAG = getClass().getName();

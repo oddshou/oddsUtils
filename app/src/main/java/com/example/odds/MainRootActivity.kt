@@ -9,13 +9,11 @@
 package com.example.odds
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.odds.adapter.SimpleAdapter
 import kotlinx.android.synthetic.main.activity_main_root.*
 import java.text.Collator

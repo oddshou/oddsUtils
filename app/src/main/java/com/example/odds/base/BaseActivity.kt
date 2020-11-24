@@ -8,15 +8,18 @@
 
 package com.example.odds.base
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.widget.ContentFrameLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import com.example.odds.MainRootActivity
 import com.example.odds.R
 
 /**
@@ -26,7 +29,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
-
     }
 
     /**
@@ -45,5 +47,18 @@ abstract class BaseActivity : AppCompatActivity() {
         val root = findViewById<ConstraintLayout>(R.id.root)
         root.addView(textView, layoutParams)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.base_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.navigation_home) {
+            startActivity(Intent(this, MainRootActivity::class.java))
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

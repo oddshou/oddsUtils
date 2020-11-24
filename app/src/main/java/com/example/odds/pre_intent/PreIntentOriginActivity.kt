@@ -8,12 +8,12 @@
 
 package com.example.odds.pre_intent
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.odds.R
 import com.odds.annotation.processor.PreIntent
-import java.util.ArrayList
+import java.util.*
 
 /**
  * 测试 preIntent 库

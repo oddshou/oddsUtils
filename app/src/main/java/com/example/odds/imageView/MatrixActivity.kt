@@ -8,18 +8,10 @@
 
 package com.example.odds.imageView
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Matrix
 import android.os.Bundle
 import com.example.odds.R
 import com.example.odds.base.BaseActivity
-import android.graphics.BitmapFactory
-import android.R.attr.x
-import android.content.Context
-import android.content.Context.WINDOW_SERVICE
-import android.graphics.Matrix
-import android.graphics.Point
-import androidx.core.content.ContextCompat.getSystemService
-import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_matrix.*
 
 

@@ -9,9 +9,7 @@
 package com.example.odds.animation.drag_help
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.customview.widget.ViewDragHelper
 import com.example.odds.R
 import com.example.odds.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_drag.*

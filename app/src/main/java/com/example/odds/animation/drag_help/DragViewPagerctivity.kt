@@ -9,10 +9,10 @@
 package com.example.odds.animation.drag_help
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
 import com.example.odds.R
 import com.example.odds.animation.phote_view.PhotoView

@@ -8,8 +8,6 @@
 
 package com.example.odds.pre_intent;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -26,6 +24,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class TestPreIntentActivity extends AppCompatActivity {

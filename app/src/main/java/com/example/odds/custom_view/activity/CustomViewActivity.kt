@@ -9,12 +9,12 @@
 package com.example.odds.custom_view.activity
 
 import android.animation.ValueAnimator
-import android.os.Bundle
-import com.example.odds.R
-import kotlinx.android.synthetic.main.activity_custom_view.*
 import android.graphics.drawable.AnimationDrawable
+import android.os.Bundle
 import android.view.View
+import com.example.odds.R
 import com.example.odds.base.BaseActivity
+import kotlinx.android.synthetic.main.activity_custom_view.*
 
 /**
  * custom View 一个公共的展示 Activity。测试控件：

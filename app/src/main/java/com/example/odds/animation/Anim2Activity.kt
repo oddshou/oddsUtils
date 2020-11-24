@@ -5,14 +5,12 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationSet
 import android.view.animation.AnimationUtils
 import android.view.animation.ScaleAnimation
+import androidx.appcompat.app.AppCompatActivity
 import com.example.odds.R
 import kotlinx.android.synthetic.main.activity_anim2.*
 
