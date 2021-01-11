@@ -21,7 +21,9 @@
         android:roundIcon="@mipmap/icon_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".kotlin_language.CoroutinesActivity">
 
+        </activity>
         <activity
             android:name=".ui.tab_scroll.TabScrollActivity"
             android:label="@string/title_activity_tab_scroll">
