@@ -21,27 +21,41 @@
         android:roundIcon="@mipmap/icon_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".kotlin_language.CoroutinesActivity">
-
-        </activity>
-        <activity
-            android:name=".ui.tab_scroll.TabScrollActivity"
-            android:label="@string/title_activity_tab_scroll">
+        <activity android:name=".custom_view.activity.ViewActivity"
+            android:label="自定义View/组合动画">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.UiTestActivity"
-            android:label="功能/fitsystem，seekbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="com.example.odds.set_root" />
             </intent-filter>
+        </activity>
+        <activity android:name=".kotlin_language.CoroutinesActivity"
+            android:label="kotlin/协程">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.tab_scroll.TabScrollActivity"
+            android:label="控件/Navigation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.UiTestActivity"
+            android:label="功能/fitsystem，seekbar">
+
         </activity>
         <activity
             android:name=".features.AppShowActivity"
