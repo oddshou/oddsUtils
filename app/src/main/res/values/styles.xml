@@ -24,4 +24,9 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
+    <style name="AppThemeSplash" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
 </resources>

@@ -1,1 +1,4 @@
+include ':test_module'
 include ':app', ':annotations', ':compiler'
+include ':pullToRefresh'
+include ':ultraptr_wt'

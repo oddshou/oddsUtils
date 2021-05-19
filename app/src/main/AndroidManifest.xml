@@ -21,8 +21,10 @@
         android:roundIcon="@mipmap/icon_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".custom_view.activity.ViewActivity"
-            android:label="自定义View/组合动画">
+        <activity android:name=".material.AppbarActivity"
+            android:label="material/Appbar"
+            android:theme="@style/AppThemeSplash"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +37,17 @@
                 <category android:name="com.example.odds.set_root" />
             </intent-filter>
         </activity>
-        <activity android:name=".kotlin_language.CoroutinesActivity"
+        <activity
+            android:name=".custom_view.activity.ViewActivity"
+            android:label="自定义View/组合动画">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".kotlin_language.CoroutinesActivity"
             android:label="kotlin/协程">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,9 +66,7 @@
         </activity>
         <activity
             android:name=".ui.UiTestActivity"
-            android:label="功能/fitsystem，seekbar">
-
-        </activity>
+            android:label="功能/fitsystem，seekbar"></activity>
         <activity
             android:name=".features.AppShowActivity"
             android:label="功能/本机安装应用信息">

@@ -60,6 +60,9 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0'
 
+    api project(':pullToRefresh')
+    api project(':ultraptr_wt')
+
     kapt project(':compiler')
 //    annotationProcessor project(':compiler')
     implementation project(':annotations')
