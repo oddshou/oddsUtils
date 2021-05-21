@@ -21,9 +21,8 @@
         android:roundIcon="@mipmap/icon_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".material.AppbarActivity"
-            android:label="material/Appbar"
-            android:theme="@style/AppThemeSplash"
+        <activity android:name=".custom_view.activity.CircleProgressActivity"
+            android:label="自定义View/半圆"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +30,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".material.AppbarActivity"
+            android:label="material/Appbar"
+            android:theme="@style/AppThemeSplash">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -66,7 +78,7 @@
         </activity>
         <activity
             android:name=".ui.UiTestActivity"
-            android:label="功能/fitsystem，seekbar"></activity>
+            android:label="功能/fitsystem，seekbar" />
         <activity
             android:name=".features.AppShowActivity"
             android:label="功能/本机安装应用信息">
