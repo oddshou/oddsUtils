@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TestAll</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_one">OneActivity</string>
+    <string name="title_activity_two">TwoActivity</string>
+    <string name="title_activity_scroll">ScrollActivity</string>
+    <string name="activity_download__demo">Download/DownloadManagerDemo</string>
+    <string name="activity_wave_view">View/WaveView</string>
+    <string name="activity_launch_mode">Activity/Launchmode</string>
+    <string name="tip_download_file">文件将下载到：</string>
+    <string name="download_notification_title">美丽说</string>
+    <string name="app_status_download">点击下载美丽说APK</string>
+    <string name="app_status_downloaded">已下载过，点击重新下载</string>
+    <string name="app_status_download_fail">下载失败，点击重新下载</string>
+    <string name="title_activity_activity_layout_view">ActivityLayoutView</string>
+    <string name="title_activity_odds_demos">OddsDemos</string>
+    <string name="title_activity_install_from_assets">Files/InstallApk/InstallFromAssets</string>
+    <string name="title_activity_tab_itercept">TabIterceptActivity</string>
+
+</resources>

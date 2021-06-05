@@ -1,0 +1,89 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.odds.othertest">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <activity
+            android:name=".OddsDemos"
+            android:label="@string/title_activity_odds_demos" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".download.DownloadManagerDemo"
+            android:label="@string/activity_download__demo" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".view.WaveViewActivity"
+            android:label="@string/activity_wave_view" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.LaunchModeActivity"
+            android:label="@string/activity_launch_mode" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.odds.othertest.apkinstall.InstallFromAssets"
+            android:label="@string/title_activity_install_from_assets" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.OneActivity"
+            android:label="@string/title_activity_one"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name=".activity.TwoActivity"
+            android:label="@string/title_activity_two" >
+        </activity>
+        <activity
+            android:name=".scroll.ScrollActivity"
+            android:label="@string/title_activity_scroll" >
+        </activity>
+        <activity
+            android:name="com.odds.othertest.scroll.TabIterceptActivity"
+            android:label="@string/title_activity_tab_itercept" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

@@ -48,6 +48,7 @@ dependencies {
     kapt project(':compiler')
 //    annotationProcessor project(':compiler')
     implementation project(':annotations')
+    api project(':othertest')
 
     ////https://github.com/Blankj/AndroidUtilCode
     implementation 'com.blankj:utilcode:1.24.0'
