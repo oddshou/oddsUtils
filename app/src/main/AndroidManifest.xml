@@ -21,28 +21,45 @@
         android:roundIcon="@mipmap/icon_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".custom_view.activity.CircleProgressActivity"
-            android:label="自定义View/半圆"
+        <activity android:name=".utils.UtilsActivity"
+            android:label="工具/正则"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="com.example.odds.set_root" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".animation.DigitalAnimActivity"
+            android:label="动画/多重复合动画">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".custom_view.activity.CircleProgressActivity"
+            android:label="自定义View/半圆">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".material.AppbarActivity"
             android:label="material/Appbar"
             android:theme="@style/AppThemeSplash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

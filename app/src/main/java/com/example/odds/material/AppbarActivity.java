@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.odds.R;
@@ -19,10 +20,14 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import in.srain.cube.views.wt.PtrFrameLayout;
 import in.srain.cube.views.wt.PtrHandler;
 
-public class AppbarActivity extends AppCompatActivity {
+public class AppbarActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "AppbarActivity";
     PtrAppbarFrameLayout mPtrLayout;
+
+    private Button btnAppbarController;
+    private Button btnPtrController;
+    private AppBarLayout appBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +49,13 @@ public class AppbarActivity extends AppCompatActivity {
     }
 
     private void init() {
+        btnAppbarController = findViewById(R.id.btnAppbarController);
+        btnAppbarController.setOnClickListener(this);
+        btnPtrController = findViewById(R.id.btnPtrController);
+        btnPtrController.setOnClickListener(this);
+
+
         mPtrLayout = findViewById(R.id.mPtrRootFrame);
-
-
 
         FqlDefaultRefreshHeader mPhvConsumeHeader = findViewById(R.id.mPtrFloorHeader);
         ViewTreeObserver vto = mPhvConsumeHeader.getViewTreeObserver();
@@ -91,7 +100,7 @@ public class AppbarActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsingToolbarLayout);
 
 
-        AppBarLayout appBarLayout = findViewById(R.id.appBarLayout);
+        appBarLayout = findViewById(R.id.appBarLayout);
         mPtrLayout.bindAppBarLayout(appBarLayout);
 
         PtrScrollView ptrScrollView = findViewById(R.id.ptrScrollView);
@@ -122,5 +131,21 @@ public class AppbarActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         mPtrLayout.refreshComplete();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnAppbarController:
+                if (appBarLayout.getVisibility() == View.VISIBLE) {
+                    appBarLayout.setExpanded(false);
+                    appBarLayout.setVisibility(View.GONE);
+                }else{
+                    appBarLayout.setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.btnPtrController:
+                break;
+        }
     }
 }

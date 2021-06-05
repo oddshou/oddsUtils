@@ -3,6 +3,7 @@ package com.example.odds.material.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 
 import com.google.android.material.appbar.AppBarLayout;
 
@@ -102,7 +103,7 @@ public class PtrAppbarFrameLayout extends PtrFrameLayout {
                         break;
                     case 'b':
                         if (isDealTopBorder) {
-                            if (appBarLayout != null && mCurrentState == State.EXPANDED) {
+                            if (appBarLayout != null && mCurrentState == State.EXPANDED || appBarLayout.getVisibility() == View.GONE) {
                                 isDealTopBorder = false;
                                 setEnabled(true);
                                 MotionEvent cancel = MotionEvent.obtain(event);
