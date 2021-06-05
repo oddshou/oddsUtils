@@ -3,4 +3,18 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="white_50">#7FFFFFFF</color>
+
+    <color name="color_1">#0DDBFF</color>
+    <color name="color_2">#1FFFF5</color>
+
+    <integer-array name="gradient_arc_color">
+        <item>@color/color_1</item>
+        <item>@color/color_2</item>
+        <item>@color/color_1</item>
+    </integer-array>
 </resources>

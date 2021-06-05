@@ -11,9 +11,7 @@ package com.example.odds.custom_view;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
@@ -21,13 +19,9 @@ import android.graphics.Xfermode;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.AttributeSet;
-import android.view.View;
 
-import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.blankj.utilcode.util.ConvertUtils;
-import com.blankj.utilcode.util.Utils;
 
 import androidx.appcompat.widget.AppCompatImageView;
 

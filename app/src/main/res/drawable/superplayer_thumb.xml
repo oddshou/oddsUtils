@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 按钮的选择器，可以设置按钮在不同状态下的时候，按钮不同的颜色 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- 高度8 -->
+    <size
+        android:width="8dp"
+        android:height="8dp" />
+    <!-- 圆角弧度 4 -->
+    <corners android:radius="4dp" />
+
+
+    <solid
+        android:color="#ffffff"
+        />
+
+</shape>

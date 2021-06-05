@@ -1,1 +1,4 @@
 include ':app', ':annotations', ':compiler', ':othertest'
+include ':test_module'
+include ':pullToRefresh'
+include ':ultraptr_wt'

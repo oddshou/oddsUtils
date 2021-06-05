@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_red_dark">
+
+    <LinearLayout
+        android:id="@+id/mVHomeTabs"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <View
+        android:id="@+id/mVTabDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#e0e0e0"
+        app:layout_constraintBottom_toTopOf="@id/mVHomeTabs" />
+
+
+    <in.srain.cube.views.wt.PtrFrameLayout
+        android:id="@+id/mPtrRootFrame"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toTopOf="@id/mVTabDivider"
+        app:layout_constraintTop_toTopOf="parent"
+        app:ptr_content="@+id/mPtrRlContent"
+        app:ptr_header="@+id/mPtrFloorHeader">
+
+        <com.example.odds.material.view.FqlDefaultRefreshHeader
+            android:id="@+id/mPtrFloorHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:id="@+id/mPtrRlContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:lineSpacingMultiplier="2"
+                android:text="@string/textContent" />
+
+        </RelativeLayout>
+
+    </in.srain.cube.views.wt.PtrFrameLayout>
+
+
+    <!--    <ViewStub-->
+    <!--        android:id="@+id/stubHead2"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout="@layout/layout_home_header_3"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

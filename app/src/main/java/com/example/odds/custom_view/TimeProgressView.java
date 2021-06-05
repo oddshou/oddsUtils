@@ -20,7 +20,6 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.odds.utils.TextLayoutUtil;
 

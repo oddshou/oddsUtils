@@ -11,11 +11,9 @@ package com.example.odds.features
 import android.app.Activity
 import android.graphics.Color
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import com.blankj.utilcode.util.BarUtils
 import com.example.odds.R
 
 /**

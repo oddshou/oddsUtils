@@ -2,16 +2,140 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.odds">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 得到屏幕正常的物理尺寸 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/icon_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/icon_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".animation.InterpolatorActivity"
-            android:label="动画/插值器"
+        <activity android:name=".utils.UtilsActivity"
+            android:label="工具/正则"
             >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".animation.DigitalAnimActivity"
+            android:label="动画/多重复合动画">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".custom_view.activity.CircleProgressActivity"
+            android:label="自定义View/半圆">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".material.AppbarActivity"
+            android:label="material/Appbar"
+            android:theme="@style/AppThemeSplash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".custom_view.activity.ViewActivity"
+            android:label="自定义View/组合动画">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".kotlin_language.CoroutinesActivity"
+            android:label="kotlin/协程">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.tab_scroll.TabScrollActivity"
+            android:label="控件/Navigation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.UiTestActivity"
+            android:label="功能/fitsystem，seekbar" />
+        <activity
+            android:name=".features.AppShowActivity"
+            android:label="功能/本机安装应用信息">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="功能/LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainRootActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.odds-hou.com"
+                    android:pathPrefix="/active"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".animation.InterpolatorActivity"
+            android:label="动画/插值器">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,13 +172,8 @@
         </activity>
         <activity
             android:name=".animation.drag_help.DragActivity"
+            android:label="动画/拖拽图片"
             android:theme="@style/AppTheme.Transparent">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -95,25 +214,6 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="com.example.odds.set_root" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".MainRootActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="www.odds-hou.com"
-                    android:pathPrefix="/active"
-                    android:scheme="http" />
             </intent-filter>
         </activity>
         <activity
@@ -166,6 +266,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".pre_intent.TestPreIntentActivity" />
+        <activity
+            android:name=".animation.Anim2Activity"
+            android:label="动画/动画demo">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.example.odds.set_root" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -61,7 +61,7 @@ public ArrayList<ParcelableClass> ParcelableList;//此处需要类型匹配 Arra
 @InitFile(Serializable = true)
 public List<SerializeClass> serializeList;
 ```
-Activity 相应方法处理
+Activity 相应方法处理
 ```java
 @Override
 protected void onSaveInstanceState(Bundle outState) {

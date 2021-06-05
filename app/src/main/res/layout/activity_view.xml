@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4D000000"
+    tools:context=".custom_view.activity.ViewActivity">
+
+    <!--    <ImageView
+            android:id="@+id/imgCoin"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:src="@drawable/ic_coin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:padding="8dp"
+            />-->
+
+    <com.example.odds.custom_view.CircularProgressView
+        android:id="@+id/circleProgressView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_coin"
+        app:backWidth="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:progFirstColor="#FF3D77"
+        app:progPadding="4dp"
+        app:progStartColor="#FF6451"
+        app:progWidth="2dp"
+        app:progress="600"
+        tools:background="@drawable/consume_task_progress_0060" />
+
+    <TextView
+        android:id="@+id/textMoney"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/circleProgressView"
+        app:layout_constraintEnd_toEndOf="@id/circleProgressView"
+        app:layout_constraintStart_toStartOf="@id/circleProgressView"
+        tools:text="+0"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/btnController"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="控制Progress暂停继续"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

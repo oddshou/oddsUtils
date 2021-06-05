@@ -13,11 +13,9 @@ import android.animation.ValueAnimator
 import android.annotation.TargetApi
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
-import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.example.odds.R
 import com.example.odds.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_anim.*

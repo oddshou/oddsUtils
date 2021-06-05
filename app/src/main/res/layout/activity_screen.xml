@@ -22,4 +22,14 @@
         tools:textSize="22sp" />
 
 
+    <TextView
+        android:id="@+id/textDevice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text"
+        android:layout_marginTop="20dp"
+        android:textIsSelectable="true"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

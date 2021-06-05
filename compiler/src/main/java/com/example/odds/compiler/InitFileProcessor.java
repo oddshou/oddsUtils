@@ -153,7 +153,8 @@ public class InitFileProcessor extends AbstractProcessor {
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .addParameter(bundle, "saveInstance")
                 .addParameter(TypeName.get(currentElement.asType()), "activityJava") //xxActivity activity
-                .addStatement("Bundle bundle = saveInstance != null ? saveInstance : activityJava.getIntent().getExtras()")
+                .addStatement("Bundle bundle = saveInstance != null ? saveInstance : activityJava.getIntent().getExtras();\n" +
+                        "if(bundle == null) return")
                 .addStatement(parm.build())
                 .build();
         return methodSpec;

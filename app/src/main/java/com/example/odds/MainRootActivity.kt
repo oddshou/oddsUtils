@@ -9,13 +9,11 @@
 package com.example.odds
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.odds.adapter.SimpleAdapter
 import kotlinx.android.synthetic.main.activity_main_root.*
 import java.text.Collator
@@ -69,8 +67,7 @@ class MainRootActivity : AppCompatActivity() {
 
         val entries = HashMap<String, Boolean>()
 
-        for (i in 0 until len) {
-            val info = list[i]
+        list.forEach {info ->
             val labelSeq = info.loadLabel(pm)
             val label = labelSeq?.toString() ?: info.activityInfo.name
 
@@ -81,11 +78,14 @@ class MainRootActivity : AppCompatActivity() {
                 val nextLabel = if (prefixPath == null) labelPath[0] else labelPath[prefixPath.size]
 
                 if (prefixPath?.size ?: 0 == labelPath.size - 1) {
+                    //最后一个隔断，跳转指定Activity
                     addItem(myData, nextLabel, activityIntent(
                             info.activityInfo.applicationInfo.packageName,
                             info.activityInfo.name))
                 } else {
+                    //非最后一个隔断
                     if (entries[nextLabel] == null) {
+                        //同一层级不重复添加
                         addItem(myData, nextLabel, browseIntent(if (prefix == "") nextLabel else "$prefix/$nextLabel"))
                         entries[nextLabel] = true
                     }
@@ -117,10 +117,10 @@ class MainRootActivity : AppCompatActivity() {
         return result
     }
 
-    private val sDisplayNameComparator = object : Comparator<Map<*, *>> {
+    private val sDisplayNameComparator = object : Comparator<Map<String, *>> {
         private val collator = Collator.getInstance()
 
-        override fun compare(map1: Map<*, *>, map2: Map<*, *>): Int {
+        override fun compare(map1: Map<String, *>, map2: Map<String, *>): Int {
             return collator.compare(map1["title"], map2["title"])
         }
     }

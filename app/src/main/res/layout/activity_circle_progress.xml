@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF0491FA"
+    tools:context=".custom_view.activity.CircleProgressActivity">
+
+    <com.example.odds.custom_view.CircleProgress
+        android:id="@+id/circleProgressView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        app:arcColors="@array/gradient_arc_color"
+        app:arcWidth="38dp"
+        app:bgArcColor="#40ABF9"
+        app:bgArcWidth="38dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxValue="100"
+        app:percent="1"
+        app:startAngle="165"
+        app:sweepAngle="210"
+        app:dialHeight="10dp"
+        app:dialWidth="1dp"
+        app:dialColor="#DFE7F1"
+        app:value="70" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
