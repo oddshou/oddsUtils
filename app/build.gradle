@@ -61,13 +61,12 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'com.github.oddshou.oddsUtils:annotations:1.4.3'
+    kapt 'com.github.oddshou.oddsUtils:compiler:1.4.3'
 
     api project(':pullToRefresh')
     api project(':ultraptr_wt')
 
-    kapt project(':compiler')
-//    annotationProcessor project(':compiler')
-    implementation project(':annotations')
     api project(':othertest')
 
     ////https://github.com/Blankj/AndroidUtilCode
@@ -75,7 +74,7 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'com.google.android.material:material:1.0.0'
 
-    implementation 'com.github.lecho:hellocharts-android:v1.5.8'
+    implementation 'com.github.lecho:hellocharts-android:1.5.8'
 
     api 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 
