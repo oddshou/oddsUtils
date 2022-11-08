@@ -22,7 +22,7 @@ public class BActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_b);
-        createIntroduction("跳转下一个页面并关闭当前页面，result由下一个页面返回");
+        setTips("跳转下一个页面并关闭当前页面，result由下一个页面返回");
 
 
         //验证得 getIntent activity 销毁不会存储

@@ -30,7 +30,7 @@ class InterpolatorActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_interpolator)
-        createIntroduction("使用 chip必须使用 MaterialComponents 相关主题, chip group singleSelection")
+        setTips("使用 chip必须使用 MaterialComponents 相关主题, chip group singleSelection")
         val arrayList = ArrayList<PointValue>()
         val lines = ArrayList<Line>()
         val data = LineChartData()

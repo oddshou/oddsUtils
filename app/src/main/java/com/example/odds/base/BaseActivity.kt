@@ -10,44 +10,48 @@ package com.example.odds.base
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import com.example.odds.MainRootActivity
 import com.example.odds.R
+import com.example.odds.databinding.ActivityBaseBinding
 
 /**
  * base Activity
  */
 abstract class BaseActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    private lateinit var binding: ActivityBaseBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityBaseBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     /**
-     * 添加介绍文字，需要设置根目录为 root
+     * 添加介绍文字
      */
-    fun createIntroduction(text: String){
-        val textView = TextView(this)
-        textView.setText(text)
-        textView.textSize = 16F
-        textView.gravity = Gravity.CENTER_VERTICAL
-        textView.setPadding(20,0,20,20)
-        val layoutParams = ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        layoutParams.endToEnd = ConstraintSet.PARENT_ID
-        layoutParams.bottomToBottom = ConstraintSet.PARENT_ID
-
-        val root = findViewById<ConstraintLayout>(R.id.root)
-        root.addView(textView, layoutParams)
+    fun setTips(text: String){
+        binding.tvTips.text = text
 
     }
+
+//    fun newBtn(text: String, listener:(()->Unit)?) {
+//        val textView = TextView(this)
+//        textView.setText(text)
+//        textView.textSize = 16F
+//        textView.gravity = Gravity.CENTER_VERTICAL
+//        textView.setPadding(20,0,20,20)
+//        val layoutParams = ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+//        layoutParams.endToEnd = ConstraintSet.PARENT_ID
+//        layoutParams.bottomToBottom = ConstraintSet.PARENT_ID
+//
+//        val root = findViewById<ConstraintLayout>(R.id.root)
+//        root.addView(textView, layoutParams)
+//    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.base_menu, menu)

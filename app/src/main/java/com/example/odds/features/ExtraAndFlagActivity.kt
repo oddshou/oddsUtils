@@ -20,7 +20,7 @@ class ExtraAndFlagActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_extra_and_flag)
-        createIntroduction("测试Activity传参，ActivityFalg")
+        setTips("测试Activity传参，ActivityFalg")
     }
 
     fun toNext(view: View) {

@@ -21,7 +21,7 @@ class DragAActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drag_a)
-        createIntroduction("点击图片进入下个页面测试图片下拉返回")
+        setTips("点击图片进入下个页面测试图片下拉返回")
 
         noAlphaImg.setOnClickListener {
             //这种方式系统动画回退到之前的位置会隐藏原控件

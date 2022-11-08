@@ -25,7 +25,7 @@ class animActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anim)
-        createIntroduction("点击暂停继续")
+        setTips("点击暂停继续")
 
         //---------------- first
         initAnim()

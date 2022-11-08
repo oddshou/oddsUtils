@@ -20,7 +20,7 @@ class MatrixActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_matrix)
-        createIntroduction("通过 matrix 使图片等比例缩放下面留空")
+        setTips("通过 matrix 使图片等比例缩放下面留空")
 
         //获取图片的原始宽度
 //        val options = BitmapFactory.Options()
