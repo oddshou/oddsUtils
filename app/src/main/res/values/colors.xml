@@ -17,4 +17,8 @@
         <item>@color/color_2</item>
         <item>@color/color_1</item>
     </integer-array>
+
+    <color name="divider_color">#D8D8D8</color>
+
+    <color name="water_normal">#59bf44</color>
 </resources>

@@ -49,4 +49,22 @@
 　　其实，我倒觉得，甪直与周庄、同里、锦溪都为水乡泽国，风貌相似，其中的区别也仅是规模的大小和寺、塔的知名度以及名人效应，但甪直却有三样是别的水乡所没有的：镇标、妇女服饰和龙须糖。若要大加宣传，应在这三样东东上下点功夫。
 
 　　说到龙须糖，它的制作实是非常传统而有趣的工艺。我看到一个店在现场制作：那位制糖师傅面带笑容，一面唱几句又吆喝几句，一面不停地将手中的糖面圈套在一个木桩上使劲拉，拉长了又折半，再套上再拉，如此反复，也不知最终要拉多少次，直到那糖面被拉成无数细丝，后面还有什么工艺我却不知了。我突然盟生一个念头：那个制糖店面临游人如织的小街，很多人驻足观看，完全可以开创一个新项目“制糖 DIY”——让游客吃自己亲手做的龙须糖！我相信游客一定会趋之若骛。</string>
+
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_one">OneActivity</string>
+    <string name="title_activity_two">TwoActivity</string>
+    <string name="title_activity_scroll">ScrollActivity</string>
+    <string name="activity_download__demo">Download/DownloadManagerDemo</string>
+    <string name="activity_wave_view">View/WaveView</string>
+    <string name="activity_launch_mode">Activity/Launchmode</string>
+    <string name="tip_download_file">文件将下载到：</string>
+    <string name="download_notification_title">美丽说</string>
+    <string name="app_status_download">点击下载美丽说APK</string>
+    <string name="app_status_downloaded">已下载过，点击重新下载</string>
+    <string name="app_status_download_fail">下载失败，点击重新下载</string>
+    <string name="title_activity_activity_layout_view">ActivityLayoutView</string>
+    <string name="title_activity_odds_demos">OddsDemos</string>
+    <string name="title_activity_install_from_assets">Files/InstallApk/InstallFromAssets</string>
+    <string name="title_activity_tab_itercept">TabIterceptActivity</string>
 </resources>
