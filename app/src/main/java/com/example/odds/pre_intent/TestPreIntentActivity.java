@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.example.odds.R;
 import com.example.odds.annotations.InitFile;
-import com.example.odds.route.RxActivity;
+import com.example.odds.rxjava.RxActivity;
 import com.odds.annotation.processor.PreIntent;
 
 import java.io.Serializable;

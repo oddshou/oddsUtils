@@ -57,12 +57,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="com.example.odds.set_root" />
             </intent-filter>
         </activity>
@@ -239,7 +233,7 @@
             android:launchMode="singleTask" />
         <activity android:name=".features.CActivity" />
         <activity
-            android:name=".route.RxActivity"
+            android:name=".rxjava.RxActivity"
             android:label="RxJava/Rx测试页1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -11,14 +11,14 @@
     <application>
 
         <activity
-            android:name=".OddsDemos"
+            android:name="com.odds.othertest.OddsDemos"
             android:label="@string/title_activity_odds_demos" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".download.DownloadManagerDemo"

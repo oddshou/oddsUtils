@@ -1,15 +1,11 @@
-package com.example.odds.route;
+package com.example.odds.rxjava;
 
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
-import com.example.odds.R;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
-import androidx.appcompat.app.AppCompatActivity;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.FlowableEmitter;
@@ -26,16 +22,15 @@ import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-
-public class RxActivity extends AppCompatActivity {
+/**
+ * ClassName:Fun
+ * Author:oddshou
+ * Description:
+ * 2022/11/1 1:54 PM
+ * Wiki:
+ */
+public class Fun {
     CompositeDisposable compositeDisposable = new CompositeDisposable();
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rx);
-        map();
-    }
-
     private void rx1() {
         //创建发送者
         Observable<Apple> observable = Observable.create(new ObservableOnSubscribe<Apple>() {
@@ -93,31 +88,31 @@ public class RxActivity extends AppCompatActivity {
     private void map() {
         Disposable subscribe =
                 Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                Log.i("rx_call", Thread.currentThread().getName());
+                            @Override
+                            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                                Log.i("rx_call", Thread.currentThread().getName());
 
-                emitter.onNext("dd");
-                emitter.onComplete();
-            }
-        })
-                //1，修改发送方线程，接收方线程跟随发送方线程
-                .subscribeOn(Schedulers.io())
+                                emitter.onNext("dd");
+                                emitter.onComplete();
+                            }
+                        })
+                        //1，修改发送方线程，接收方线程跟随发送方线程
+                        .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
-                //1，修改接收方线程
+                        //1，修改接收方线程
 //                .observeOn(Schedulers.io())
-                .map(new Function<String, Float>() {
-                    @Override
-                    public Float apply(String s) throws Exception {
-                        Log.i("rx_map", Thread.currentThread().getName());
-                        return 88F;
-                    }
-                }).subscribe(new Consumer<Float>() {
-                    @Override
-                    public void accept(Float aFloat) throws Exception {
-                        Log.i("rx_subscribe", Thread.currentThread().getName());
-                    }
-                });
+                        .map(new Function<String, Float>() {
+                            @Override
+                            public Float apply(String s) throws Exception {
+                                Log.i("rx_map", Thread.currentThread().getName());
+                                return 88F;
+                            }
+                        }).subscribe(new Consumer<Float>() {
+                            @Override
+                            public void accept(Float aFloat) throws Exception {
+                                Log.i("rx_subscribe", Thread.currentThread().getName());
+                            }
+                        });
         Log.i("rx_map", " main over");
         compositeDisposable.add(subscribe);
     }
@@ -177,13 +172,13 @@ public class RxActivity extends AppCompatActivity {
     }
     private void flowable(){
         Flowable.create(new FlowableOnSubscribe<Apple>() {
-            @Override
-            public void subscribe(FlowableEmitter<Apple> emitter) throws Exception {
-                long requested = emitter.requested();   //当前下游需要发送的数量
-                //
-                emitter.onNext(new Apple());
-            }
-        }, BackpressureStrategy.ERROR)
+                    @Override
+                    public void subscribe(FlowableEmitter<Apple> emitter) throws Exception {
+                        long requested = emitter.requested();   //当前下游需要发送的数量
+                        //
+                        emitter.onNext(new Apple());
+                    }
+                }, BackpressureStrategy.ERROR)
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Subscriber<Apple>() {
@@ -217,11 +212,7 @@ public class RxActivity extends AppCompatActivity {
 //        Observable.fromFuture(new FutureTask<>())
     }
 
-    @Override
-    protected void onDestroy() {
-        compositeDisposable.dispose();
-        super.onDestroy();
-    }
+
 
     public void clickMap(View view) {
         map();
@@ -246,5 +237,10 @@ public class RxActivity extends AppCompatActivity {
     }
 
     static class GreenApple extends Apple {
+    }
+
+
+    public void destroy(){
+        compositeDisposable.dispose();
     }
 }
