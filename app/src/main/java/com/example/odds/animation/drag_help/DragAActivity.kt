@@ -34,5 +34,10 @@ class DragAActivity : BaseActivity() {
                 TODO("VERSION.SDK_INT < LOLLIPOP")
             }
         }
+
+        val textView = getBottomText()
+        textView.post {
+            textView.text = "${noAlphaImg.width} * ${noAlphaImg.height}"
+        }
     }
 }

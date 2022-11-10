@@ -9,10 +9,16 @@
 package com.example.odds.base
 
 import android.content.Intent
-import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import com.example.odds.MainRootActivity
 import com.example.odds.R
 import com.example.odds.databinding.ActivityBaseBinding
@@ -22,12 +28,19 @@ import com.example.odds.databinding.ActivityBaseBinding
  */
 abstract class BaseActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityBaseBinding
+    protected lateinit var binding: ActivityBaseBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun setContentView(layoutResID: Int) {
         binding = ActivityBaseBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        super.setContentView(binding.root)
+        if (layoutResID > 0) {
+            val view = layoutInflater.inflate(layoutResID, binding.root, false)
+            val layoutParams = ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0)
+            view.layoutParams = layoutParams
+            layoutParams.bottomToTop = binding.llBottom.id
+            layoutParams.topToTop = ConstraintSet.PARENT_ID
+            binding.root.addView(view, 0, layoutParams)
+        }
     }
 
     /**
@@ -35,22 +48,30 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     fun setTips(text: String){
         binding.tvTips.text = text
-
     }
 
-//    fun newBtn(text: String, listener:(()->Unit)?) {
-//        val textView = TextView(this)
-//        textView.setText(text)
-//        textView.textSize = 16F
-//        textView.gravity = Gravity.CENTER_VERTICAL
-//        textView.setPadding(20,0,20,20)
-//        val layoutParams = ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-//        layoutParams.endToEnd = ConstraintSet.PARENT_ID
-//        layoutParams.bottomToBottom = ConstraintSet.PARENT_ID
-//
-//        val root = findViewById<ConstraintLayout>(R.id.root)
-//        root.addView(textView, layoutParams)
-//    }
+    fun getBottomText(): TextView{
+        val textView = TextView(this)
+        addBottomView(textView)
+        return textView
+    }
+
+    private fun addBottomView(textView: TextView) {
+        textView.textSize = 16F
+        textView.gravity = Gravity.CENTER
+        textView.setPadding(0, 20, 0, 20)
+        val layoutParams = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        binding.llBottom.addView(textView, 0, layoutParams)
+    }
+
+    fun getBottomBtn():Button{
+        val button = Button(this)
+        addBottomView(button)
+        return button
+    }
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

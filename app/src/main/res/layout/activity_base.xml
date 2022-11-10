@@ -14,16 +14,23 @@
     android:layout_height="match_parent"
     tools:context=".animation.drag_help.DragAActivity">
 
-    <TextView
-        android:id="@+id/tvTips"
+
+    <LinearLayout
+        android:id="@+id/llBottom"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_16"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text=" 这是一段介绍/说明文案"
-        android:paddingBottom="@dimen/dp_20"
         android:paddingStart="@dimen/dp_20"
         android:paddingEnd="@dimen/dp_20"
-        android:gravity="center"
-        />
+        android:paddingBottom="@dimen/dp_20"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/tvTips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/sp_16"
+            tools:text=" 这是一段介绍/说明文案" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
