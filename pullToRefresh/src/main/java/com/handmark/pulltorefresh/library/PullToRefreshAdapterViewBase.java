@@ -113,6 +113,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
         return mShowIndicator;
     }
 
+    @Override
     public final void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount,
                                final int totalItemCount) {
 
@@ -140,6 +141,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
         }
     }
 
+    @Override
     public final void onScrollStateChanged(final AbsListView view, final int state) {
         /**
          * Check that the scrolling has stopped, and that the last item is
@@ -275,6 +277,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
         }
     }
 
+    @Override
     protected void onRefreshing(boolean doScroll) {
         super.onRefreshing(doScroll);
 
@@ -317,10 +320,12 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
         mShowIndicator = a.getBoolean(R.styleable.PullToRefresh_ptrShowIndicator, !isPullToRefreshOverScrollEnabled());
     }
 
+    @Override
     protected boolean isReadyForPullStart() {
         return isFirstItemVisible();
     }
 
+    @Override
     protected boolean isReadyForPullEnd() {
         return isLastItemVisible();
     }

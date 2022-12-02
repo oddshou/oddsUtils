@@ -45,8 +45,9 @@ public class CircleProgressView extends ImageView {
     @Override
     protected void onVisibilityChanged(View changedView, int visibility) {
         super.onVisibilityChanged(changedView, visibility);
-        if (loadingCircleViewDrawable == null)
+        if (loadingCircleViewDrawable == null) {
             return;
+        }
 
         if (changedView.getVisibility() == GONE ||
                 changedView.getVisibility() == INVISIBLE ||

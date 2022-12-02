@@ -1088,6 +1088,7 @@ public class PtrFrameLayout extends ViewGroup {
             mScroller = new Scroller(getContext());
         }
 
+        @Override
         public void run() {
             boolean finish = !mScroller.computeScrollOffset() || mScroller.isFinished();
             int curY = mScroller.getCurrY();

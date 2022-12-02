@@ -230,10 +230,13 @@ public class CircularProgressView extends androidx.appcompat.widget.AppCompatIma
      * @param colorArray 渐变色集合
      */
     public void setProgressColor(@ColorRes int[] colorArray) {
-        if (colorArray == null || colorArray.length < 2) return;
+        if (colorArray == null || colorArray.length < 2) {
+            return;
+        }
         mColorArray = new int[colorArray.length];
-        for (int index = 0; index < colorArray.length; index++)
+        for (int index = 0; index < colorArray.length; index++) {
             mColorArray[index] = ContextCompat.getColor(getContext(), colorArray[index]);
+        }
         mProgressPaint.setShader(new LinearGradient(0, 0, 0, getMeasuredWidth(), mColorArray, null, Shader.TileMode.MIRROR));
         invalidate();
     }

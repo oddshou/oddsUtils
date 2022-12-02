@@ -220,8 +220,9 @@ public class RecyclerWrapAdapter extends RecyclerView.Adapter implements Wrapper
     // 移除头部
     public void removeHeaderView(View view) {
         int index = mHeaderViews.indexOfValue(view);
-        if (index < 0)
+        if (index < 0) {
             return;
+        }
         mHeaderViews.removeAt(index);
         notifyDataSetChanged();
     }
@@ -229,8 +230,9 @@ public class RecyclerWrapAdapter extends RecyclerView.Adapter implements Wrapper
     // 移除底部
     public void removeFooterView(View view) {
         int index = mFooterViews.indexOfValue(view);
-        if (index < 0)
+        if (index < 0) {
             return;
+        }
         mFooterViews.removeAt(index);
         notifyDataSetChanged();
     }

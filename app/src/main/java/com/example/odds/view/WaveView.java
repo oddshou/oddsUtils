@@ -83,12 +83,10 @@ public class WaveView extends View {
 
     private Timer timer;
     private MyTimerTask mTask;
-    Handler updateHandler = new Handler()
-    {
+    Handler updateHandler = new Handler(){
 
         @Override
-        public void handleMessage(Message msg)
-        {
+        public void handleMessage(Message msg){
             // 记录平移总位移
             mMoveLen += SPEED_MOVE;
             if (mCurrentLine > mDestLine) {
@@ -102,11 +100,9 @@ public class WaveView extends View {
             }
             mLeftSide += SPEED_MOVE;
             // 波形平移
-            for (int i = 0; i < mPointsList.size(); i++)
-            {
+            for (int i = 0; i < mPointsList.size(); i++){
                 mPointsList.get(i).x = mPointsList.get(i).x + SPEED_MOVE;
-                switch (i % 4)
-                {
+                switch (i % 4){
                     case 0:
                     case 2:
                         mPointsList.get(i).y = mCurrentLine;
@@ -119,8 +115,7 @@ public class WaveView extends View {
                         break;
                 }
             }
-            if (mMoveLen >= mWaveWidth)
-            {
+            if (mMoveLen >= mWaveWidth){
                 // 波形平移超过一个完整波形后复位
                 mMoveLen = 0;
                 resetPoints();
@@ -130,20 +125,17 @@ public class WaveView extends View {
 
     };
 
-    public WaveView(Context context)
-    {
+    public WaveView(Context context){
         super(context);
         init();
     }
 
-    public WaveView(Context context, AttributeSet attrs)
-    {
+    public WaveView(Context context, AttributeSet attrs){
         super(context, attrs);
         init();
     }
 
-    public WaveView(Context context, AttributeSet attrs, int defStyle)
-    {
+    public WaveView(Context context, AttributeSet attrs, int defStyle){
         super(context, attrs, defStyle);
         init();
     }
@@ -153,11 +145,9 @@ public class WaveView extends View {
     private Paint mPaintBitmap;
     private Bitmap mWavePathBitmap;
 
-    private void init()
-    {
+    private void init(){
         try {
-            if (android.os.Build.VERSION.SDK_INT >= 11)
-            {
+            if (android.os.Build.VERSION.SDK_INT >= 11){
                 setLayerType(LAYER_TYPE_HARDWARE, null);
             }
         } catch (Exception e) {
@@ -204,27 +194,22 @@ public class WaveView extends View {
     /**
      * 所有点的x坐标都还原到初始状态，也就是一个周期前的状态
      */
-    private void resetPoints()
-    {
+    private void resetPoints(){
         mLeftSide = -mWaveWidth;
-        for (int i = 0; i < mPointsList.size(); i++)
-        {
+        for (int i = 0; i < mPointsList.size(); i++){
             mPointsList.get(i).x = i * mWaveWidth / 4 - mWaveWidth;
         }
     }
 
     @Override
-    public void onWindowFocusChanged(boolean hasWindowFocus)
-    {
+    public void onWindowFocusChanged(boolean hasWindowFocus){
         super.onWindowFocusChanged(hasWindowFocus);
         // 开始波动
         start();
     }
 
-    private void start()
-    {
-        if (mTask != null)
-        {
+    private void start(){
+        if (mTask != null){
             mTask.cancel();
             mTask = null;
         }
@@ -261,13 +246,11 @@ public class WaveView extends View {
             // 这里计算在可见的View宽度中能容纳几个波形，注意n上取整
             int n = (int) Math.round(mViewWidth / mWaveWidth);
             // n个波形需要4n+1个点，但是我们要预留一个波形在左边隐藏区域，所以需要4n+5个点
-            for (int i = 0; i < (4 * n + 5); i++)
-            {
+            for (int i = 0; i < (4 * n + 5); i++){
                 // 从P0开始初始化到P4n+4，总共4n+5个点
                 float x = i * mWaveWidth / 4 - mWaveWidth;
                 float y = 0;
-                switch (i % 4)
-                {
+                switch (i % 4){
                     case 0:
                     case 2:
                         // 零点位于水位线上
@@ -278,6 +261,7 @@ public class WaveView extends View {
                         y = mCurrentLine + mWaveHeight;
                         break;
                     case 3:
+                    default:
                         // 往上波动的控制点
                         y = mCurrentLine - mWaveHeight;
                         break;
@@ -302,8 +286,7 @@ public class WaveView extends View {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
-    {
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         // mDrawableBG = getBackground();
         if (mDrawableBG != null) {
@@ -411,8 +394,9 @@ public class WaveView extends View {
     }
 
     private void saveToFile(Bitmap bmp) throws IOException {
-        if (RUN_TIME > 0)
+        if (RUN_TIME > 0) {
             return;
+        }
         RUN_TIME++;
 
         File file = new File("/storage/emulated/0/Pictures/bg.png");

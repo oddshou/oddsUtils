@@ -38,7 +38,9 @@ public class TextLayoutUtil {
 
     public static int getHysteresisOffset(TextView textView, int x, int y, int previousOffset) {
         final Layout layout = textView.getLayout();
-        if (layout == null) return -1;
+        if (layout == null) {
+            return -1;
+        }
 
         int line = layout.getLineForVertical(y);
 

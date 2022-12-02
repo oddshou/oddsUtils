@@ -176,8 +176,9 @@ public class LoadingCircleViewDrawable extends Drawable implements Animatable {
 
     @Override
     public void start() {
-        if (isPlay)
+        if (isPlay) {
             return;
+        }
         isPlay = true;
         mPaint.setColor(mPaintColor);
         resetOriginals();
@@ -194,8 +195,9 @@ public class LoadingCircleViewDrawable extends Drawable implements Animatable {
 
     @Override
     public void stop() {
-        if (!isPlay)
+        if (!isPlay) {
             return;
+        }
         isPlay = false;
         mRenderAnimator.removeAllUpdateListeners();
 //        mRenderAnimator.setRepeatCount(0);

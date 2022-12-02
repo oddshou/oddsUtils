@@ -7,6 +7,7 @@ import com.handmark.pulltorefresh.library.internal.LoadingLayout;
 
 import java.util.HashSet;
 
+@SuppressWarnings("AliMissingOverrideAnnotation")
 public class LoadingLayoutProxy implements ILoadingLayout {
 
 	private final HashSet<LoadingLayout> mLoadingLayouts;
@@ -65,6 +66,7 @@ public class LoadingLayoutProxy implements ILoadingLayout {
 		}
 	}
 
+	@Override
 	public void setTextTypeface(Typeface tf) {
 		for (LoadingLayout layout : mLoadingLayouts) {
 			layout.setTextTypeface(tf);

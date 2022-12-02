@@ -45,8 +45,9 @@ class CustomGestureDetector {
             public boolean onScale(ScaleGestureDetector detector) {
                 float scaleFactor = detector.getScaleFactor();
 
-                if (Float.isNaN(scaleFactor) || Float.isInfinite(scaleFactor))
+                if (Float.isNaN(scaleFactor) || Float.isInfinite(scaleFactor)) {
                     return false;
+                }
              
                 if (scaleFactor >= 0) {
                     mListener.onScale(scaleFactor,

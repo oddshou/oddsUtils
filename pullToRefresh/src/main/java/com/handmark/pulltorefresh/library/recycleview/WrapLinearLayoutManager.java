@@ -96,6 +96,7 @@ public class WrapLinearLayoutManager extends LinearLayoutManager {
          * millisecondsPerInch 默认为25，及移动每英寸需要花费25ms，
          * 如果你要速度变快一点，就直接设置设置小一点，注意这里的单位是float
          */
+        @Override
         protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
             return mSmoothMillsPerInch / displayMetrics.densityDpi;
         }

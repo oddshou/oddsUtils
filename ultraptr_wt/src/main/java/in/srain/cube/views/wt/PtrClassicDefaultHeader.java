@@ -174,7 +174,7 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
         // update last update time
         SharedPreferences sharedPreferences = getContext().getSharedPreferences(KEY_SharedPreferences, 0);
         if (!TextUtils.isEmpty(mLastUpdateTimeKey)) {
-            mLastUpdateTime = new Date().getTime();
+            mLastUpdateTime = System.currentTimeMillis();
             sharedPreferences.edit().putLong(mLastUpdateTimeKey, mLastUpdateTime).commit();
         }
     }
@@ -201,7 +201,7 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
         if (mLastUpdateTime == -1) {
             return null;
         }
-        long diffTime = new Date().getTime() - mLastUpdateTime;
+        long diffTime = System.currentTimeMillis() - mLastUpdateTime;
         int seconds = (int) (diffTime / 1000);
         if (diffTime < 0) {
             return null;
