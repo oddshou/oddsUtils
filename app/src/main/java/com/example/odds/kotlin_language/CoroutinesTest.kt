@@ -1,9 +1,11 @@
 package com.example.odds.kotlin_language
 
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.consumeEach
+import kotlinx.coroutines.channels.produce
+import kotlinx.coroutines.flow.*
 import java.io.File
 import kotlin.coroutines.EmptyCoroutineContext
 import kotlin.math.log
@@ -28,8 +30,9 @@ suspend fun doSomethingUsefulTwo(): Int {
     println("doSomethingUsefulTwo" + System.currentTimeMillis())
     return 29
 }
+val threadLocal = ThreadLocal<String>()
 
-fun main() =runBlocking{
+fun main2() =runBlocking{
     println("start")
     val time = measureTimeMillis {
         val one = async { doSomethingUsefulOne() }
@@ -37,6 +40,33 @@ fun main() =runBlocking{
         one.await()
     }
     println("Completed in $time ms")
+
+    launch(Dispatchers.Unconfined){
+
+    }
+
+    launch(newSingleThreadContext("hh")){
+
+    }
+    async(CoroutineName("cd")){
+
+    }
+    launch(Dispatchers.Default + threadLocal.asContextElement("launch")){
+
+    }
+}
+
+fun CoroutineScope.produceSquares(): ReceiveChannel<Int> = produce {
+    for (x in 1..5){
+        delay(200)
+        send(x * x)
+    }
+}
+
+fun main() = runBlocking {
+    val squares = produceSquares()
+    squares.consumeEach { println(it) }
+    println("Done!")
 }
 
 class  CoroutinesTest {
